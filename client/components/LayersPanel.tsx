@@ -178,10 +178,10 @@ export function LayersPanel() {
 
                 <div
                   className={cn(
-                    'flex-1 text-xs font-semibold cursor-pointer rounded px-2 py-1',
+                    'flex-1 text-xs font-semibold cursor-pointer rounded px-2 py-1 transition-colors duration-150',
                     activePage === page.id
-                      ? 'bg-sidebar-primary text-sidebar-primary-foreground'
-                      : 'text-sidebar-foreground hover:bg-sidebar-accent'
+                      ? 'bg-sidebar-accent text-sidebar-foreground border-l-primary'
+                      : 'text-sidebar-foreground hover:bg-sidebar-accent/50'
                   )}
                   onClick={() => setActivePage(page.id)}
                 >
