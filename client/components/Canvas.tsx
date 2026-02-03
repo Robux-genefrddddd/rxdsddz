@@ -15,11 +15,8 @@ interface CanvasProps {
 
 export function Canvas({ onFrameCreate }: CanvasProps) {
   const [zoom, setZoom] = useState(100);
-  const [frames, setFrames] = useState<Frame[]>([
-    { id: 'frame-1', name: 'Home Screen', width: 360, height: 640 },
-    { id: 'frame-2', name: 'Settings', width: 360, height: 640 },
-  ]);
-  const [showWelcome, setShowWelcome] = useState(false);
+  const [frames, setFrames] = useState<Frame[]>([]);
+  const [showWelcome, setShowWelcome] = useState(true);
 
   const createNewFrame = () => {
     const newFrame: Frame = {
