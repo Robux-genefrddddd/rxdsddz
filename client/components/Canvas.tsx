@@ -151,6 +151,13 @@ export function Canvas({ onFrameCreate }: CanvasProps) {
           Fit
         </Button>
       </div>
+
+      {/* Create Frame Dialog */}
+      <CreateFrameDialog
+        isOpen={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        onCreateFrame={createNewFrame}
+      />
     </div>
   );
 }
