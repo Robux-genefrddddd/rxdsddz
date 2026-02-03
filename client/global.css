@@ -69,17 +69,18 @@
 
   /* Rbxigma is dark mode only - no light mode variant */
   .dark {
-    --background: 217 33% 6%;
+    /* Same as :root since Rbxigma is dark-first */
+    --background: 217 28% 5.5%;
     --foreground: 210 14% 95%;
 
-    --card: 217 27% 12%;
+    --card: 217 24% 9.5%;
     --card-foreground: 210 14% 95%;
 
-    --popover: 217 27% 12%;
+    --popover: 217 24% 9.5%;
     --popover-foreground: 210 14% 95%;
 
     --primary: 264 95% 58%;
-    --primary-foreground: 217 33% 6%;
+    --primary-foreground: 217 28% 5.5%;
 
     --secondary: 217 22% 25%;
     --secondary-foreground: 210 14% 95%;
@@ -88,22 +89,22 @@
     --muted-foreground: 210 8% 60%;
 
     --accent: 180 100% 50%;
-    --accent-foreground: 217 33% 6%;
+    --accent-foreground: 217 28% 5.5%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 16% 20%;
-    --input: 217 22% 16%;
+    --border: 217 18% 20%;
+    --input: 217 20% 15%;
     --ring: 264 95% 58%;
 
-    --sidebar-background: 217 27% 10%;
+    --sidebar-background: 217 24% 9.5%;
     --sidebar-foreground: 210 14% 92%;
     --sidebar-primary: 264 95% 58%;
-    --sidebar-primary-foreground: 217 33% 6%;
-    --sidebar-accent: 217 27% 20%;
+    --sidebar-primary-foreground: 217 28% 5.5%;
+    --sidebar-accent: 217 20% 16%;
     --sidebar-accent-foreground: 210 14% 95%;
-    --sidebar-border: 217 16% 18%;
+    --sidebar-border: 217 18% 16%;
     --sidebar-ring: 264 95% 58%;
   }
 }
