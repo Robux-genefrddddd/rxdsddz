@@ -226,7 +226,10 @@ export function LayersPanel() {
 
       {/* Add Page Button */}
       <div className="border-t border-sidebar-border p-3">
-        <button className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-sidebar-primary text-sidebar-primary-foreground text-xs font-medium hover:opacity-90 transition-opacity">
+        <button
+          onClick={addNewPage}
+          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded bg-primary text-primary-foreground text-xs font-medium hover:bg-primary/90 transition-colors shadow-sm hover:shadow-md active:shadow-none"
+        >
           <Plus className="w-4 h-4" />
           Add Page
         </button>
