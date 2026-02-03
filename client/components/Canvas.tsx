@@ -59,99 +59,48 @@ export function Canvas({ onFrameCreate }: CanvasProps) {
         />
 
         {/* Canvas Content */}
-        <div
-          className="absolute inset-0 flex items-center justify-center"
-          style={{
-            zoom: `${zoom}%`,
-          }}
-        >
-          {showWelcome ? (
-            /* Welcome Frame */
-            <div
-              className="w-96 bg-card border-2 border-primary rounded-lg shadow-xl overflow-hidden"
-              style={{
-                maxHeight: '640px',
-                maxWidth: '360px',
-              }}
-            >
-              {/* iOS-like Safe Area */}
-              <div className="h-12 bg-gradient-to-b from-secondary to-transparent flex items-center justify-between px-4">
-                <span className="text-xs font-semibold text-foreground">9:41</span>
-                <div className="flex items-center gap-1">
-                  <div className="w-1 h-1 rounded-full bg-foreground" />
-                  <div className="w-1 h-1 rounded-full bg-foreground" />
-                  <div className="w-1 h-1 rounded-full bg-foreground" />
-                </div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          {frames.length === 0 ? (
+            /* Empty State */
+            <div className="flex flex-col items-center gap-6">
+              <div className="space-y-3 text-center">
+                <h3 className="text-xl font-semibold text-foreground">No frames yet</h3>
+                <p className="text-sm text-muted-foreground max-w-xs">
+                  Create your first frame to start designing. Choose from presets or customize dimensions.
+                </p>
               </div>
-
-              {/* Content Area */}
-              <div className="p-6 space-y-4">
-                <div className="space-y-2">
-                  <h2 className="text-xl font-bold text-foreground">Welcome to Rbxigma</h2>
-                  <p className="text-sm text-muted-foreground">
-                    Figma++ for Roblox UI. Design powerful interfaces with ease.
-                  </p>
-                </div>
-
-                <div className="space-y-3 pt-4">
-                  <button
-                    onClick={createNewFrame}
-                    className="w-full px-4 py-3 bg-primary text-primary-foreground rounded font-medium text-sm hover:bg-primary/90 transition-colors shadow-sm hover:shadow-md active:shadow-none flex items-center justify-center gap-2"
-                  >
-                    <Plus className="w-4 h-4" />
-                    Create Frame
-                  </button>
-                  <button className="w-full px-4 py-3 bg-card border border-border text-foreground rounded font-medium text-sm hover:bg-card/80 transition-colors">
-                    Open Template
-                  </button>
-                </div>
-
-                {/* Feature Highlights */}
-                <div className="pt-6 space-y-3 border-t border-border">
-                  <div className="flex gap-3">
-                    <div className="w-8 h-8 rounded bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center flex-shrink-0">
-                      <span className="text-xs font-bold text-primary-foreground">✓</span>
-                    </div>
-                    <div className="text-xs">
-                      <p className="font-medium text-foreground">Roblox Preview</p>
-                      <p className="text-muted-foreground">See your UI in real Roblox</p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3">
-                    <div className="w-8 h-8 rounded bg-gradient-to-br from-primary via-primary to-primary/80 flex items-center justify-center flex-shrink-0">
-                      <span className="text-xs font-bold text-primary-foreground">✓</span>
-                    </div>
-                    <div className="text-xs">
-                      <p className="font-medium text-foreground">Smart Export</p>
-                      <p className="text-muted-foreground">Export directly to Studio</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Button
+                onClick={() => setDialogOpen(true)}
+                className="gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                Create Frame
+              </Button>
             </div>
           ) : (
-            /* Multiple Frames Grid */
-            <div className="grid grid-cols-2 gap-8 p-8">
+            /* Frames Grid */
+            <div
+              className="grid gap-8 p-8"
+              style={{
+                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              }}
+            >
               {frames.map((frame) => (
                 <div
                   key={frame.id}
-                  className="bg-card border-2 border-border rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer"
+                  className="bg-card border-2 border-border rounded shadow-sm hover:shadow-md hover:border-primary/30 transition-all cursor-pointer group"
                   style={{
                     aspectRatio: `${frame.width} / ${frame.height}`,
-                    maxWidth: '240px',
+                    maxWidth: '280px',
                   }}
                 >
-                  <div className="h-full flex items-center justify-center text-center p-4">
+                  <div className="h-full flex items-center justify-center text-center p-4 group-hover:bg-secondary/20 rounded transition-colors">
                     <div className="space-y-2">
                       <p className="text-sm font-medium text-foreground">{frame.name}</p>
                       <p className="text-xs text-muted-foreground">
-                        {frame.width}x{frame.height}
+                        {frame.width} × {frame.height}
                       </p>
-                      <button
-                        onClick={createNewFrame}
-                        className="mt-3 px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded hover:bg-primary/20 transition-colors"
-                      >
+                      <button className="mt-3 px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded hover:bg-primary/20 transition-colors">
                         Edit
                       </button>
                     </div>
@@ -161,11 +110,10 @@ export function Canvas({ onFrameCreate }: CanvasProps) {
 
               {/* Add Frame Button */}
               <button
-                onClick={createNewFrame}
-                className="border-2 border-dashed border-border rounded-lg hover:border-primary/50 hover:bg-card/50 transition-all flex items-center justify-center"
+                onClick={() => setDialogOpen(true)}
+                className="border-2 border-dashed border-border rounded hover:border-primary/50 hover:bg-card/50 transition-all flex items-center justify-center"
                 style={{
-                  aspectRatio: `${frames[0].width} / ${frames[0].height}`,
-                  maxWidth: '240px',
+                  minHeight: '240px',
                 }}
               >
                 <div className="flex flex-col items-center gap-2">
