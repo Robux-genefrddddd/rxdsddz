@@ -21,13 +21,13 @@ export function Canvas() {
     <div className="flex-1 flex flex-col bg-gradient-to-br from-background to-background/80 overflow-hidden">
       {/* Canvas Area */}
       <div className="flex-1 overflow-auto relative bg-grid">
-        {/* Grid Pattern */}
+        {/* Grid Pattern - Subtle (30% opacity) */}
         <div
           className="absolute inset-0"
           style={{
             backgroundImage: `
-              linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px),
-              linear-gradient(0deg, hsl(var(--border)) 1px, transparent 1px)
+              linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px),
+              linear-gradient(0deg, hsl(var(--border) / 0.3) 1px, transparent 1px)
             `,
             backgroundSize: '20px 20px',
           }}
