@@ -1,6 +1,7 @@
 import { ZoomIn, ZoomOut, Maximize2, Plus } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { CreateFrameDialog } from '@/components/CreateFrameDialog';
 
 interface Frame {
   id: string;
@@ -16,17 +17,16 @@ interface CanvasProps {
 export function Canvas({ onFrameCreate }: CanvasProps) {
   const [zoom, setZoom] = useState(100);
   const [frames, setFrames] = useState<Frame[]>([]);
-  const [showWelcome, setShowWelcome] = useState(true);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
-  const createNewFrame = () => {
+  const createNewFrame = (width: number, height: number, name: string) => {
     const newFrame: Frame = {
       id: `frame-${Date.now()}`,
-      name: `Frame ${frames.length + 1}`,
-      width: 360,
-      height: 640,
+      name,
+      width,
+      height,
     };
     setFrames([...frames, newFrame]);
-    setShowWelcome(false);
     onFrameCreate?.(newFrame);
   };
 
