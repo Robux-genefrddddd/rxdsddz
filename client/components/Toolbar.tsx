@@ -41,7 +41,7 @@ const toolGroups = [
     name: 'arrange',
     tools: [
       { id: 'align', label: 'Align', icon: AlignLeft, shortcut: 'Ctrl+A' },
-      { id: 'distribute', label: 'Distribute', icon: Space3, shortcut: 'Ctrl+D' },
+      { id: 'distribute', label: 'Distribute', icon: ArrowUpDown, shortcut: 'Ctrl+D' },
       { id: 'arrange', label: 'Arrange', icon: Maximize2, shortcut: '' },
     ],
   },
