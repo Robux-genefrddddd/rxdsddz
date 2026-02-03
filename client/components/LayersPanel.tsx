@@ -140,6 +140,25 @@ export function LayersPanel() {
   const [activePage, setActivePage] = useState(pages[0].id);
   const [expandedPages, setExpandedPages] = useState<Set<string>>(new Set([pages[0].id]));
 
+  const addNewPage = () => {
+    const newPage: Page = {
+      id: `page-${Date.now()}`,
+      name: `Page ${pages.length + 1}`,
+      layers: [
+        {
+          id: `frame-${Date.now()}`,
+          name: 'Frame 1',
+          type: 'frame',
+          visible: true,
+          locked: false,
+        },
+      ],
+    };
+    setPages([...pages, newPage]);
+    setActivePage(newPage.id);
+    setExpandedPages(new Set([...expandedPages, newPage.id]));
+  };
+
   const currentPage = pages.find((p) => p.id === activePage);
 
   const togglePageExpanded = (pageId: string) => {
