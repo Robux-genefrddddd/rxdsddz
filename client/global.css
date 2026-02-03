@@ -12,52 +12,58 @@
    * A different format will require also updating the theme in tailwind.config.ts.
   */
   :root {
-    /* Dark mode is the default for Rbxigma */
-    --background: 217 33% 6%;
+    /* Dark mode is the default for Rbxigma - Premium SaaS Palette */
+
+    /* === BACKGROUNDS (3 LEVELS) === */
+    /* App background - very dark neutral */
+    --background: 217 28% 5.5%;
     --foreground: 210 14% 95%;
 
-    --card: 217 27% 12%;
+    /* Panel background - slightly lighter */
+    --card: 217 24% 9.5%;
     --card-foreground: 210 14% 95%;
 
-    --popover: 217 27% 12%;
+    /* Elevated surfaces */
+    --popover: 217 24% 9.5%;
     --popover-foreground: 210 14% 95%;
 
-    /* Primary - Vibrant Purple/Blue for premium feel */
+    /* === ACCENT (Violet - 10-15% usage) === */
     --primary: 264 95% 58%;
-    --primary-foreground: 217 33% 6%;
+    --primary-foreground: 217 28% 5.5%;
 
-    /* Secondary - Subtle cool gray */
+    /* === SECONDARY & MUTED === */
     --secondary: 217 22% 25%;
     --secondary-foreground: 210 14% 95%;
 
-    /* Muted - For subtle UI elements */
     --muted: 217 14% 18%;
     --muted-foreground: 210 8% 60%;
 
-    /* Accent - Bright cyan for highlights */
+    /* === ACCENT (not used, keeping for compat) === */
     --accent: 180 100% 50%;
-    --accent-foreground: 217 33% 6%;
+    --accent-foreground: 217 28% 5.5%;
 
-    /* Destructive */
+    /* === DESTRUCTIVE === */
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    /* Borders and inputs */
-    --border: 217 16% 20%;
-    --input: 217 22% 16%;
+    /* === BORDERS (KEY CORRECTION A) === */
+    /* Base border - slightly more visible but not harsh */
+    --border: 217 18% 20%;
+    /* Subtle border - very light dividers */
+    --input: 217 20% 15%;
     --ring: 264 95% 58%;
 
-    /* Border radius */
-    --radius: 0.625rem;
+    /* === RADIUS === */
+    --radius: 0.375rem;
 
-    /* Sidebar styling */
-    --sidebar-background: 217 27% 10%;
+    /* === SIDEBAR (using same palette) === */
+    --sidebar-background: 217 24% 9.5%;
     --sidebar-foreground: 210 14% 92%;
     --sidebar-primary: 264 95% 58%;
-    --sidebar-primary-foreground: 217 33% 6%;
-    --sidebar-accent: 217 27% 20%;
+    --sidebar-primary-foreground: 217 28% 5.5%;
+    --sidebar-accent: 217 20% 16%;
     --sidebar-accent-foreground: 210 14% 95%;
-    --sidebar-border: 217 16% 18%;
+    --sidebar-border: 217 18% 16%;
     --sidebar-ring: 264 95% 58%;
   }
 
