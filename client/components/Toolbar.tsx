@@ -6,7 +6,7 @@ import {
   PenTool,
   Frame,
   AlignLeft,
-  Distribution3,
+  ArrowUpDown,
   Maximize2,
   Layers,
   Zap,
