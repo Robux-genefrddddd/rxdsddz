@@ -54,40 +54,50 @@ const toolGroups = [
   },
 ];
 
-export function Toolbar() {
+interface ToolbarProps {
+  onToolChange?: (toolId: string) => void;
+}
+
+export function Toolbar({ onToolChange }: ToolbarProps) {
   const [activeTool, setActiveTool] = useState('select');
 
+  const handleToolSelect = (toolId: string) => {
+    setActiveTool(toolId);
+    onToolChange?.(toolId);
+  };
+
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-card border border-border rounded-lg shadow-lg p-2 flex gap-1 flex-wrap justify-center max-w-2xl">
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-card border border-border rounded shadow-lg p-2 flex gap-1 flex-wrap justify-center max-w-2xl">
       {toolGroups.map((group, groupIndex) => (
         <div key={group.name} className="flex gap-1">
           {group.tools.map((tool) => {
             const Icon = tool.icon;
+            const isActive = activeTool === tool.id;
             return (
               <Button
                 key={tool.id}
-                variant={activeTool === tool.id ? 'default' : 'ghost'}
-                size="sm"
+                variant={isActive ? 'default' : 'ghost'}
+                size="icon"
                 className={cn(
-                  'w-10 h-10 p-0 relative group',
-                  activeTool === tool.id && 'bg-primary text-primary-foreground'
+                  'w-9 h-9 relative group transition-all',
+                  isActive && 'bg-primary text-primary-foreground shadow-sm'
                 )}
-                onClick={() => setActiveTool(tool.id)}
+                onClick={() => handleToolSelect(tool.id)}
                 title={`${tool.label} (${tool.shortcut})`}
               >
                 <Icon className="w-4 h-4" />
                 {/* Tooltip */}
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-secondary text-foreground text-xs py-1 px-2 rounded whitespace-nowrap z-10 border border-border">
-                  {tool.label}
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-secondary text-foreground text-xs py-1 px-2 rounded whitespace-nowrap z-10 border border-border/50">
+                  <div className="font-medium">{tool.label}</div>
                   {tool.shortcut && (
-                    <span className="text-muted-foreground ml-1">({tool.shortcut})</span>
+                    <div className="text-muted-foreground text-xs">{tool.shortcut}</div>
                   )}
                 </div>
               </Button>
             );
           })}
           {groupIndex < toolGroups.length - 1 && (
-            <div className="w-px bg-border mx-1" />
+            <div className="w-px h-6 bg-border/40 mx-1" />
           )}
         </div>
       ))}
