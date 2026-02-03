@@ -64,7 +64,7 @@ export function TopBar() {
         </Button>
 
         {/* Divider */}
-        <div className="w-px h-6 bg-border mx-1" />
+        <div className="w-px h-6 bg-border/40 mx-1" />
 
         {/* Avatar */}
         <button
