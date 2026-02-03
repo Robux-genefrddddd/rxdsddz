@@ -7,14 +7,15 @@ export function TopBar() {
       {/* Left Section: Logo and Project Name */}
       <div className="flex items-center gap-3 min-w-0">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-md bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
+          <div className="w-8 h-8 rounded bg-gradient-to-br from-primary via-primary to-primary/80 flex items-center justify-center flex-shrink-0">
             <span className="text-xs font-bold text-primary-foreground">Rx</span>
           </div>
           <span className="text-sm font-semibold text-foreground hidden sm:inline">Rbxigma</span>
         </div>
-        <div className="hidden sm:flex items-center gap-2 pl-3 border-l border-border min-w-0">
+        <div className="hidden sm:flex items-center gap-2 pl-3 border-l border-border/40 min-w-0">
           <span className="text-xs text-muted-foreground truncate">My Project</span>
-          <span className="text-xs text-muted-foreground">/ Frame 1</span>
+          <span className="text-xs text-muted-foreground">/</span>
+          <span className="text-xs text-muted-foreground">Frame 1</span>
         </div>
       </div>
 
