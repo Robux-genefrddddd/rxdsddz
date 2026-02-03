@@ -67,10 +67,10 @@ export function LeftSidebar() {
               key={item.id}
               to={item.href}
               className={cn(
-                'flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all group',
+                'flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all group border-l-2',
                 active
-                  ? 'bg-sidebar-primary text-sidebar-primary-foreground shadow-md'
-                  : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+                  ? 'bg-sidebar-accent text-sidebar-foreground border-l-primary'
+                  : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground border-l-transparent'
               )}
             >
               <Icon className="w-5 h-5 flex-shrink-0" />
