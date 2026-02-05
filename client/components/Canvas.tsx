@@ -63,12 +63,13 @@ export function Canvas({
     const x = (e.clientX - rect.left) / (zoom / 100);
     const y = (e.clientY - rect.top) / (zoom / 100);
 
-    // Handle dragging selected element (smooth with delta offset)
+    // Handle dragging selected element
     if (isDragging && selectedId) {
-      setDragDelta({
-        x: x - dragOffset.x,
-        y: y - dragOffset.y,
-      });
+      const delta = {
+        x: x - dragStartRef.current.x,
+        y: y - dragStartRef.current.y,
+      };
+      setDragDelta(delta);
       return;
     }
 
