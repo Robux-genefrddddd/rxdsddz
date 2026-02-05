@@ -67,7 +67,7 @@ export function Toolbar({ onToolChange }: ToolbarProps) {
   };
 
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-card border border-border rounded shadow-lg p-2 flex gap-1 flex-wrap justify-center max-w-2xl">
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-card/95 backdrop-blur-md border border-border rounded-lg shadow-lg p-2 flex gap-1 flex-wrap justify-center max-w-2xl">
       {toolGroups.map((group, groupIndex) => (
         <div key={group.name} className="flex gap-1">
           {group.tools.map((tool) => {
@@ -86,8 +86,9 @@ export function Toolbar({ onToolChange }: ToolbarProps) {
                 title={`${tool.label} (${tool.shortcut})`}
               >
                 <Icon className="w-4 h-4" />
+                
                 {/* Tooltip */}
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-secondary text-foreground text-xs py-1 px-2 rounded whitespace-nowrap z-10 border border-border/50">
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-secondary text-foreground text-xs py-2 px-2 rounded whitespace-nowrap z-10 border border-border/50">
                   <div className="font-medium">{tool.label}</div>
                   {tool.shortcut && (
                     <div className="text-muted-foreground text-xs">{tool.shortcut}</div>
