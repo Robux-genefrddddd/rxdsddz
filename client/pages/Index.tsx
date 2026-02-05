@@ -60,28 +60,60 @@ export default function Index() {
       </nav>
 
       {/* Main Content */}
-      <main className="pt-20">
+      <main className="pt-12">
         {/* Hero Section */}
-        <section className="max-w-4xl mx-auto px-8 py-40 text-center space-y-12">
-          <h1 className="text-8xl font-black leading-tight tracking-tight" style={{ fontFamily: 'system-ui, -apple-system, sans-serif', letterSpacing: '-0.02em' }}>
-            Design Roblox
+        <section className="max-w-5xl mx-auto px-8 py-28 text-center">
+          {/* H1 - Reduced size and cleaner */}
+          <h1
+            className="font-bold leading-tight tracking-tight mb-6"
+            style={{
+              fontSize: '60px',
+              fontWeight: 800,
+              lineHeight: 1.08,
+              letterSpacing: '-0.02em',
+              maxWidth: '950px',
+              margin: '0 auto 24px'
+            }}
+          >
+            Design Roblox UIs
             <br />
-            <span className="text-neutral-500">UIs Professionally</span>
+            Professionally
           </h1>
 
-          <p className="text-lg text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+          {/* Subtitle - SaaS pro style */}
+          <p
+            className="mb-8"
+            style={{
+              fontSize: '17px',
+              color: 'rgba(255,255,255,0.68)',
+              lineHeight: 1.6,
+              maxWidth: '600px',
+              margin: '0 auto 32px'
+            }}
+          >
             Professional design tools for Roblox. Create, export, and deploy with precision.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               to="/editor"
-              className="px-7 py-3 bg-white text-black rounded-lg font-semibold text-sm hover:bg-neutral-100 transition-colors flex items-center gap-2"
+              className="flex items-center justify-center gap-2 px-8 font-semibold text-sm text-black bg-white hover:bg-neutral-100 transition-colors"
+              style={{ height: '48px', borderRadius: '12px' }}
             >
               <Plus className="w-4 h-4" />
               Create Project
             </Link>
-            <button className="px-7 py-3 border border-neutral-800 rounded-lg font-semibold text-sm text-neutral-300 hover:border-neutral-700 hover:bg-neutral-950/50 transition-colors">
+            <button
+              className="px-8 font-semibold text-sm transition-colors"
+              style={{
+                height: '48px',
+                color: 'white',
+                border: '1px solid rgba(255,255,255,0.10)',
+                backgroundColor: 'transparent',
+                borderRadius: '12px'
+              }}
+            >
               View Templates
             </button>
           </div>
