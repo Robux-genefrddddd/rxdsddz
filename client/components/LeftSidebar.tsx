@@ -28,7 +28,7 @@ export function LeftSidebar() {
   };
 
   return (
-    <div className="fixed left-0 top-14 bottom-0 w-64 bg-sidebar border-r border-sidebar-border flex flex-col">
+    <div className="fixed left-0 top-14 bottom-0 w-64 bg-black border-r border-neutral-900 flex flex-col">
       
       {/* Main Navigation */}
       <nav className="flex-1 px-2 py-4 overflow-y-auto space-y-1">
