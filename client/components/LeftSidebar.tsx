@@ -58,7 +58,7 @@ export function LeftSidebar() {
       </nav>
 
       {/* Bottom Navigation */}
-      <div className="border-t border-sidebar-border px-2 py-4 space-y-1">
+      <div className="border-t border-neutral-900 px-2 py-4 space-y-1">
         {bottomItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.href);
