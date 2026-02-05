@@ -60,10 +60,19 @@ export function LayersPanel({
   return (
     <div className="w-64 bg-black border-r border-neutral-900 flex flex-col">
       {/* Header */}
-      <div className="flex items-center border-b border-neutral-900 px-3 py-2.5 h-10">
+      <div className="flex items-center justify-between border-b border-neutral-900 px-3 py-2.5 h-10">
         <span className="text-xs font-semibold text-neutral-300 uppercase tracking-wide">
           Layers
         </span>
+        {onToggle && (
+          <button
+            onClick={onToggle}
+            className="text-neutral-400 hover:text-white transition-colors"
+            title="Collapse Layers Panel"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+        )}
       </div>
 
       {/* Content */}
