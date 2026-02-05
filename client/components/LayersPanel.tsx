@@ -79,7 +79,7 @@ export function LayersPanel({
       <div className="flex-1 overflow-y-auto">
         {/* Elements Group */}
         <div className="px-1 py-2">
-          <button
+          <div
             onClick={() => toggleGroup("elements")}
             className="w-full flex items-center gap-1 px-2 py-1.5 cursor-pointer hover:bg-sidebar-accent/50 rounded transition-colors group"
           >
@@ -97,10 +97,13 @@ export function LayersPanel({
                 : "No Elements"}
             </div>
 
-            <button className="flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-sidebar-primary rounded opacity-0 group-hover:opacity-100 transition-opacity">
+            <button
+              onClick={(e) => e.stopPropagation()}
+              className="flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-sidebar-primary rounded opacity-0 group-hover:opacity-100 transition-opacity"
+            >
               <Plus className="w-3 h-3" />
             </button>
-          </button>
+          </div>
 
           {/* Elements List */}
           {expandedGroups.has("elements") && elements.length > 0 && (
