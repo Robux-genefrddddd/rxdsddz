@@ -67,7 +67,7 @@ export function Toolbar({ onToolChange }: ToolbarProps) {
   };
 
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-card/95 backdrop-blur-md border border-border rounded-lg shadow-lg p-2 flex gap-1 flex-wrap justify-center max-w-2xl">
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-black/95 backdrop-blur-md border border-neutral-900 rounded-lg shadow-lg p-2 flex gap-1 flex-wrap justify-center max-w-2xl">
       {toolGroups.map((group, groupIndex) => (
         <div key={group.name} className="flex gap-1">
           {group.tools.map((tool) => {
