@@ -8,10 +8,7 @@ export function TopBar() {
         
         {/* Left Section: Logo and Breadcrumb */}
         <div className="flex items-center gap-3 min-w-0">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-violet-700 flex items-center justify-center flex-shrink-0">
-            <span className="text-xs font-bold text-white">Rx</span>
-          </div>
-          <span className="text-sm font-semibold text-white hidden sm:inline">Rbxigma</span>
+          <span className="text-sm font-semibold text-white">Rbxigma</span>
 
           {/* Breadcrumb */}
           <div className="hidden sm:flex items-center gap-2 pl-3 border-l border-neutral-800 min-w-0">
