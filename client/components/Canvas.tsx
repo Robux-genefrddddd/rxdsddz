@@ -42,10 +42,8 @@ export function Canvas({
       const element = elements.find((el) => el.id === selectedId);
       if (element) {
         setIsDragging(true);
-        setDragOffset({
-          x: x - element.x,
-          y: y - element.y,
-        });
+        dragStartRef.current = { x, y };
+        setDragDelta({ x: 0, y: 0 });
         return;
       }
     }
