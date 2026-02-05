@@ -257,7 +257,7 @@ export function Canvas({
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-gradient-to-br from-background to-background/80 overflow-hidden">
+    <div className="flex-1 flex flex-col bg-black overflow-hidden">
       {/* Canvas Area */}
       <div
         ref={canvasRef}
@@ -418,7 +418,7 @@ export function Canvas({
       </div>
 
       {/* Zoom Controls */}
-      <div className="bg-card border-t border-border px-4 py-3 flex items-center justify-between">
+      <div className="bg-neutral-950 border-t border-neutral-900 px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Button
             variant="ghost"

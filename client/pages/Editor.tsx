@@ -22,6 +22,7 @@ export default function Editor() {
   const [activeTool, setActiveTool] = useState("select");
   const [elements, setElements] = useState<CanvasElement[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [layersVisible, setLayersVisible] = useState(true);
 
   const handleElementsChange = (newElements: CanvasElement[]) => {
     setElements(newElements);
@@ -44,11 +45,25 @@ export default function Editor() {
         {/* Main Editor Area */}
         <div className="flex flex-1 ml-64">
           {/* Layers Panel */}
-          <LayersPanel
-            elements={elements}
-            selectedId={selectedId}
-            onSelectElement={handleElementSelect}
-          />
+          {layersVisible && (
+            <LayersPanel
+              elements={elements}
+              selectedId={selectedId}
+              onSelectElement={handleElementSelect}
+              onToggle={() => setLayersVisible(false)}
+            />
+          )}
+
+          {/* Toggle Layers Button */}
+          {!layersVisible && (
+            <button
+              onClick={() => setLayersVisible(true)}
+              className="w-8 bg-black border-r border-neutral-900 flex items-center justify-center hover:bg-neutral-900 transition-colors text-neutral-400 hover:text-white text-xs font-semibold"
+              title="Show Layers Panel"
+            >
+              &gt;
+            </button>
+          )}
 
           {/* Canvas */}
           <Canvas
