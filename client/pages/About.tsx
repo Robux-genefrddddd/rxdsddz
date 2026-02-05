@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function About() {
   const teamMembers = [
@@ -8,28 +8,24 @@ export default function About() {
       name: 'Alex Johnson',
       role: 'Founder & CEO',
       bio: 'Designer and developer with 8+ years in UX tools',
-      image: '👨‍💼',
     },
     {
       id: 2,
       name: 'Sarah Chen',
       role: 'Head of Design',
       bio: 'Previously at Figma. Passionate about design systems',
-      image: '👩‍🎨',
     },
     {
       id: 3,
       name: 'Marcus Williams',
       role: 'Lead Engineer',
       bio: 'Full-stack developer specialized in graphics tools',
-      image: '👨‍💻',
     },
     {
       id: 4,
       name: 'Emma Rodriguez',
       role: 'Product Lead',
       bio: 'Community-focused product builder from Roblox',
-      image: '👩‍🔬',
     },
   ];
 
@@ -53,36 +49,63 @@ export default function About() {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-black text-white">
+    <div 
+      className="w-full min-h-screen flex flex-col"
+      style={{ backgroundColor: 'hsl(var(--background))' }}
+    >
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-neutral-900/50">
-        <div className="max-w-6xl mx-auto px-8 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+      <nav 
+        className="fixed top-0 left-0 right-0 z-50 border-b"
+        style={{
+          height: '56px',
+          backgroundColor: 'hsl(var(--card))',
+          borderColor: 'rgba(255, 255, 255, 0.08)',
+          backdropFilter: 'blur(8px)',
+        }}
+      >
+        <div 
+          className="max-w-6xl mx-auto h-full flex items-center justify-between"
+          style={{ paddingLeft: '24px', paddingRight: '24px' }}
+        >
+          <Link 
+            to="/" 
+            className="flex items-center gap-2 group"
+          >
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Roblox_Logo.svg/2048px-Roblox_Logo.svg.png"
               alt="Roblox"
-              className="w-6 h-6"
+              className="w-5 h-5 group-hover:opacity-80 transition-opacity"
             />
-            <span className="text-sm font-semibold tracking-tight">Rbxigma</span>
+            <span 
+              className="font-semibold group-hover:opacity-80 transition-opacity"
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                color: 'hsl(var(--foreground))',
+              }}
+            >
+              Rbxigma
+            </span>
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            <Link to="/" className="text-xs transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.72)' }}>Home</Link>
-            <a href="#" className="text-xs transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.72)' }}>Docs</a>
-            <a href="#" className="text-xs transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.72)' }}>Community</a>
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="#">Docs</NavLink>
+            <NavLink href="#">Community</NavLink>
           </div>
 
           <Link
             to="/editor"
-            className="font-semibold text-xs text-white hover:opacity-90 transition-opacity"
+            className="inline-flex items-center justify-center font-semibold transition-all hover:opacity-90 active:scale-95"
             style={{
               height: '40px',
-              display: 'flex',
-              alignItems: 'center',
-              borderRadius: '10px',
-              paddingLeft: '18px',
-              paddingRight: '18px',
-              backgroundColor: '#E4405E'
+              paddingLeft: '16px',
+              paddingRight: '16px',
+              borderRadius: '12px',
+              backgroundColor: 'hsl(var(--primary))',
+              color: 'hsl(var(--primary-foreground))',
+              fontSize: '13px',
+              fontWeight: 600,
             }}
           >
             Get Started
@@ -91,58 +114,37 @@ export default function About() {
       </nav>
 
       {/* Main Content */}
-      <main className="pt-20">
+      <main 
+        className="flex-1 pt-20 pb-12"
+        style={{ paddingTop: '80px' }}
+      >
         {/* Hero Section */}
-        <section className="max-w-5xl mx-auto px-8 py-20 text-center relative">
-          <style>{`
-            @keyframes fadeInUp {
-              from {
-                opacity: 0;
-                transform: translateY(20px);
-              }
-              to {
-                opacity: 1;
-                transform: translateY(0);
-              }
-            }
-            @keyframes fadeInUpDelay {
-              from {
-                opacity: 0;
-                transform: translateY(20px);
-              }
-              to {
-                opacity: 1;
-                transform: translateY(0);
-              }
-            }
-          `}</style>
-
+        <section 
+          className="max-w-3xl mx-auto px-6 py-12 text-center"
+        >
           <h1
-            className="font-bold leading-tight tracking-tight mb-4"
             style={{
-              fontSize: '60px',
-              fontWeight: 800,
-              lineHeight: 1.08,
-              letterSpacing: '-1px',
-              maxWidth: '800px',
-              margin: '0 auto 16px',
-              animation: 'fadeInUp 0.6s ease-out'
+              fontSize: '32px',
+              fontWeight: 700,
+              lineHeight: 1.3,
+              letterSpacing: '-0.3px',
+              color: 'hsl(var(--foreground))',
+              marginBottom: '16px',
+              animation: 'fadeInUp 0.5s ease-out',
             }}
           >
-            Passionate About
-            <br />
-            Design Tools
+            About <span style={{ color: 'hsl(var(--primary))' }}>Rbxigma</span>
           </h1>
 
           <p
-            className="mb-8"
             style={{
-              fontSize: '17px',
-              color: 'rgba(255,255,255,0.68)',
+              fontSize: '15px',
+              fontWeight: 400,
               lineHeight: 1.6,
-              maxWidth: '620px',
-              margin: '0 auto 48px',
-              animation: 'fadeInUpDelay 0.6s ease-out 0.2s both'
+              color: 'hsl(var(--muted-foreground))',
+              maxWidth: '520px',
+              margin: '16px auto 32px',
+              animation: 'fadeInUp 0.5s ease-out 0.1s both',
             }}
           >
             We're a team of designers, developers, and builders creating the future of Roblox game design.
@@ -150,109 +152,146 @@ export default function About() {
         </section>
 
         {/* Values Section */}
-        <section className="max-w-6xl mx-auto px-8 py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {values.map((value, index) => (
-              <div
-                key={value.title}
-                className="p-8 rounded-lg border transition-all hover:border-opacity-50"
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.02)',
-                  borderColor: 'rgba(255,255,255,0.1)',
-                  animation: `fadeInUpDelay 0.6s ease-out ${0.3 + index * 0.1}s both`
-                }}
-              >
-                <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                <p style={{ color: 'rgba(255,255,255,0.68)' }}>{value.description}</p>
-              </div>
+        <section 
+          className="max-w-5xl mx-auto px-6 py-20"
+          style={{ marginTop: '24px' }}
+        >
+          <h2
+            style={{
+              fontSize: '16px',
+              fontWeight: 700,
+              color: 'hsl(var(--foreground))',
+              marginBottom: '24px',
+              textAlign: 'center',
+            }}
+          >
+            Our Core Values
+          </h2>
+
+          <div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-5"
+            style={{ marginTop: '24px' }}
+          >
+            {values.map((value) => (
+              <ValueCard key={value.title} title={value.title} description={value.description} />
             ))}
           </div>
         </section>
 
         {/* Team Section */}
-        <section className="max-w-6xl mx-auto px-8 py-20">
+        <section 
+          className="max-w-5xl mx-auto px-6 py-20"
+          style={{ marginTop: '24px' }}
+        >
           <h2
-            className="text-4xl font-bold mb-16 text-center"
             style={{
-              animation: 'fadeInUp 0.6s ease-out'
+              fontSize: '16px',
+              fontWeight: 700,
+              color: 'hsl(var(--foreground))',
+              marginBottom: '24px',
+              textAlign: 'center',
             }}
           >
             Meet Our Team
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {teamMembers.map((member, index) => (
-              <div
-                key={member.id}
-                className="p-6 rounded-lg border transition-all hover:border-opacity-50"
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.02)',
-                  borderColor: 'rgba(255,255,255,0.1)',
-                  animation: `fadeInUpDelay 0.6s ease-out ${0.4 + index * 0.1}s both`
-                }}
-              >
-                <div
-                  className="text-5xl mb-4 text-center"
-                  style={{ lineHeight: 1 }}
-                >
-                  {member.image}
-                </div>
-                <h3 className="font-bold text-lg mb-1">{member.name}</h3>
-                <p
-                  className="text-sm mb-3 font-medium"
-                  style={{ color: '#1E90FF' }}
-                >
-                  {member.role}
-                </p>
-                <p
-                  className="text-sm"
-                  style={{ color: 'rgba(255,255,255,0.68)' }}
-                >
-                  {member.bio}
-                </p>
-              </div>
+          <div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
+            style={{ marginTop: '24px' }}
+          >
+            {teamMembers.map((member) => (
+              <TeamCard key={member.id} member={member} />
             ))}
           </div>
         </section>
 
         {/* Story Section */}
-        <section className="max-w-3xl mx-auto px-8 py-20">
-          <h2 className="text-4xl font-bold mb-8">Our Story</h2>
-          <div className="space-y-6">
-            <p style={{ color: 'rgba(255,255,255,0.78)', lineHeight: 1.8 }}>
+        <section 
+          className="max-w-2xl mx-auto px-6 py-20"
+          style={{ marginTop: '24px' }}
+        >
+          <h2
+            style={{
+              fontSize: '16px',
+              fontWeight: 700,
+              color: 'hsl(var(--foreground))',
+              marginBottom: '16px',
+            }}
+          >
+            Our Story
+          </h2>
+          <div className="space-y-4">
+            <p
+              style={{
+                fontSize: '14px',
+                fontWeight: 400,
+                lineHeight: 1.6,
+                color: 'hsl(var(--muted-foreground))',
+              }}
+            >
               Rbxigma was born from a simple observation: Roblox creators deserved better tools. The community has always been the heart of Roblox, and we wanted to build something that empowers creators to design with precision and confidence.
             </p>
-            <p style={{ color: 'rgba(255,255,255,0.78)', lineHeight: 1.8 }}>
+            <p
+              style={{
+                fontSize: '14px',
+                fontWeight: 400,
+                lineHeight: 1.6,
+                color: 'hsl(var(--muted-foreground))',
+              }}
+            >
               What started as a side project has grown into a mission. We're committed to creating professional-grade design tools specifically built for the Roblox ecosystem, combining the power of industry-standard editors with Roblox-specific features.
             </p>
-            <p style={{ color: 'rgba(255,255,255,0.78)', lineHeight: 1.8 }}>
+            <p
+              style={{
+                fontSize: '14px',
+                fontWeight: 400,
+                lineHeight: 1.6,
+                color: 'hsl(var(--muted-foreground))',
+              }}
+            >
               Every feature we build, every decision we make, is guided by our community. We listen, we iterate, and we never stop improving.
             </p>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="max-w-2xl mx-auto px-8 py-20 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Create?</h2>
-          <p
-            className="mb-8"
+        <section 
+          className="max-w-2xl mx-auto px-6 py-20 text-center"
+          style={{ marginTop: '24px' }}
+        >
+          <h2
             style={{
-              fontSize: '16px',
-              color: 'rgba(255,255,255,0.68)',
+              fontSize: '24px',
+              fontWeight: 700,
+              color: 'hsl(var(--foreground))',
+              marginBottom: '12px',
+            }}
+          >
+            Ready to Create?
+          </h2>
+          <p
+            style={{
+              fontSize: '14px',
+              fontWeight: 400,
               lineHeight: 1.6,
+              color: 'hsl(var(--muted-foreground))',
+              marginBottom: '24px',
             }}
           >
             Join thousands of Roblox creators building amazing experiences with Rbxigma.
           </p>
           <Link
             to="/editor"
-            className="inline-flex items-center justify-center gap-2 px-8 font-semibold text-sm text-white hover:shadow-lg transition-all"
+            className="inline-flex items-center justify-center gap-2 font-semibold transition-all hover:opacity-90 active:scale-95"
             style={{
-              height: '48px',
-              backgroundColor: '#E4405E',
+              height: '40px',
+              paddingLeft: '20px',
+              paddingRight: '20px',
               borderRadius: '12px',
-              boxShadow: '0 4px 16px rgba(228, 64, 94, 0.25)',
-              border: '1px solid rgba(228, 64, 94, 0.3)'
+              backgroundColor: 'hsl(var(--primary))',
+              color: 'hsl(var(--primary-foreground))',
+              fontSize: '14px',
+              fontWeight: 600,
             }}
           >
             Start Building
@@ -262,58 +301,230 @@ export default function About() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-neutral-900/50 py-12 bg-black">
-        <div className="max-w-4xl mx-auto px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="flex flex-col md:flex-row items-center gap-4">
+      <footer 
+        className="border-t"
+        style={{
+          borderColor: 'rgba(255, 255, 255, 0.08)',
+          backgroundColor: 'hsl(var(--card))',
+          paddingTop: '32px',
+          paddingBottom: '32px',
+        }}
+      >
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex flex-col md:flex-row items-center gap-3">
               <a
                 href="https://roblox.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center opacity-100 hover:opacity-80 transition-opacity"
-                aria-label="Roblox"
+                className="hover:opacity-80 transition-opacity"
               >
                 <img
                   src="https://i.ibb.co/B531Dsh6/roblox-logo-roblox-symbol-meaning-history-and-evolution-3-removebg-preview.png"
                   alt="Roblox"
-                  className="h-10 object-contain"
+                  style={{ height: '32px', objectFit: 'contain' }}
                 />
               </a>
-              <span className="text-xs text-neutral-500 border-l border-white/10 pl-4">
+              <span 
+                className="text-xs border-l pl-3"
+                style={{
+                  borderColor: 'rgba(255, 255, 255, 0.08)',
+                  color: 'hsl(var(--muted-foreground))',
+                  fontSize: '12px',
+                  fontWeight: 400,
+                }}
+              >
                 Not an official Roblox site
               </span>
             </div>
 
-            <div className="flex items-center gap-4">
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg hover:bg-white/8 transition-all duration-200 text-neutral-500 hover:text-white"
-                aria-label="GitHub"
-              >
-                <Github className="w-4 h-4" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg hover:bg-white/8 transition-all duration-200 text-neutral-500 hover:text-white"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a
-                href="mailto:contact@rbxigma.com"
-                className="p-2 rounded-lg hover:bg-white/8 transition-all duration-200 text-neutral-500 hover:text-white"
-                aria-label="Email"
-              >
-                <Mail className="w-4 h-4" />
-              </a>
+            <div className="flex items-center gap-3">
+              <SocialLink href="https://github.com" label="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                </svg>
+              </SocialLink>
+              <SocialLink href="https://linkedin.com" label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect width="4" height="12" x="2" y="9"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </SocialLink>
+              <SocialLink href="mailto:hello@rbxigma.com" label="Email">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
+                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                </svg>
+              </SocialLink>
             </div>
           </div>
         </div>
       </footer>
+
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(12px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
+  );
+}
+
+// Sub-components
+function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      className="text-sm font-medium transition-colors"
+      style={{
+        fontSize: '13px',
+        fontWeight: 500,
+        color: 'hsl(var(--muted-foreground))',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.color = 'hsl(var(--primary))';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.color = 'hsl(var(--muted-foreground))';
+      }}
+    >
+      {children}
+    </a>
+  );
+}
+
+function ValueCard({ title, description }: { title: string; description: string }) {
+  return (
+    <div
+      className="p-6 rounded-xl border transition-all hover:border-primary/30 group"
+      style={{
+        backgroundColor: 'hsl(var(--card))',
+        borderColor: 'rgba(255, 255, 255, 0.08)',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+        e.currentTarget.style.transform = 'translateY(-2px)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = 'var(--shadow-xs)';
+        e.currentTarget.style.transform = 'translateY(0)';
+      }}
+    >
+      <h3
+        style={{
+          fontSize: '16px',
+          fontWeight: 700,
+          color: 'hsl(var(--foreground))',
+          marginBottom: '8px',
+        }}
+      >
+        {title}
+      </h3>
+      <p
+        style={{
+          fontSize: '14px',
+          fontWeight: 400,
+          color: 'hsl(var(--muted-foreground))',
+          lineHeight: 1.5,
+        }}
+      >
+        {description}
+      </p>
+    </div>
+  );
+}
+
+function TeamCard({ member }: { member: any }) {
+  return (
+    <div
+      className="p-5 rounded-xl border transition-all hover:border-primary/30"
+      style={{
+        backgroundColor: 'hsl(var(--card))',
+        borderColor: 'rgba(255, 255, 255, 0.08)',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+        e.currentTarget.style.transform = 'translateY(-2px)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = 'var(--shadow-xs)';
+        e.currentTarget.style.transform = 'translateY(0)';
+      }}
+    >
+      <div
+        style={{
+          fontSize: '32px',
+          marginBottom: '12px',
+          lineHeight: 1,
+        }}
+      >
+        {['👨‍💼', '👩‍🎨', '👨‍💻', '👩‍🔬'][member.id - 1]}
+      </div>
+      <h3
+        style={{
+          fontSize: '14px',
+          fontWeight: 600,
+          color: 'hsl(var(--foreground))',
+          marginBottom: '4px',
+        }}
+      >
+        {member.name}
+      </h3>
+      <p
+        style={{
+          fontSize: '12px',
+          fontWeight: 500,
+          color: 'hsl(var(--primary))',
+          marginBottom: '8px',
+        }}
+      >
+        {member.role}
+      </p>
+      <p
+        style={{
+          fontSize: '12px',
+          fontWeight: 400,
+          color: 'hsl(var(--muted-foreground))',
+          lineHeight: 1.5,
+        }}
+      >
+        {member.bio}
+      </p>
+    </div>
+  );
+}
+
+function SocialLink({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-2 rounded-lg transition-all"
+      style={{
+        backgroundColor: 'transparent',
+        color: 'hsl(var(--muted-foreground))',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.backgroundColor = 'hsl(var(--secondary))';
+        e.currentTarget.style.color = 'hsl(var(--foreground))';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.backgroundColor = 'transparent';
+        e.currentTarget.style.color = 'hsl(var(--muted-foreground))';
+      }}
+      title={label}
+    >
+      {children}
+    </a>
   );
 }
