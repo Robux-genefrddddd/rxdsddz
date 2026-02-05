@@ -221,10 +221,17 @@ export function Canvas({
           {elements.map((element) => (
             <div
               key={element.id}
-              onClick={(e) => handleElementClick(e, element.id)}
-              className={`absolute cursor-pointer transition-all pointer-events-auto ${
-                selectedId === element.id ? 'ring-2 ring-primary shadow-md' : 'hover:ring-1 hover:ring-primary/50'
-              }`}
+              onMouseDown={(e) => {
+                if (activeTool === 'select') {
+                  e.stopPropagation();
+                  handleElementClick(e as any, element.id);
+                  handleMouseDown(e as any);
+                }
+              }}
+              className={cn(
+                'absolute transition-all pointer-events-auto',
+                activeTool === 'select' && selectedId === element.id ? 'ring-2 ring-primary shadow-md cursor-grab active:cursor-grabbing' : 'cursor-pointer hover:ring-1 hover:ring-primary/50'
+              )}
               style={{
                 left: `${element.x}px`,
                 top: `${element.y}px`,
