@@ -62,7 +62,7 @@ export default function Index() {
       <main className="pt-20">
         {/* Hero Section */}
         <section className="max-w-4xl mx-auto px-8 py-40 text-center space-y-12">
-          <h1 className="text-7xl font-bold leading-tight tracking-tight">
+          <h1 className="text-8xl font-black leading-tight tracking-tight" style={{ fontFamily: 'system-ui, -apple-system, sans-serif', letterSpacing: '-0.02em' }}>
             Design Roblox
             <br />
             <span className="text-neutral-500">UIs Professionally</span>
