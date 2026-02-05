@@ -444,3 +444,102 @@ function SocialLink({ href, label, children }: { href: string; label: string; ch
     </a>
   );
 }
+
+function FeaturedProjectCard({
+  name,
+  description,
+  thumbnail,
+  date,
+  collaborators
+}: {
+  name: string;
+  description: string;
+  thumbnail: string;
+  date: string;
+  collaborators: number;
+}) {
+  return (
+    <div
+      className="group rounded-xl border overflow-hidden transition-all cursor-pointer"
+      style={{
+        backgroundColor: 'hsl(var(--card))',
+        borderColor: 'rgba(255, 255, 255, 0.08)',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+        e.currentTarget.style.borderColor = 'hsl(var(--primary))';
+        e.currentTarget.style.transform = 'translateY(-2px)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = 'var(--shadow-xs)';
+        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+        e.currentTarget.style.transform = 'translateY(0)';
+      }}
+    >
+      {/* Thumbnail */}
+      <div
+        style={{
+          aspectRatio: '16 / 9',
+          backgroundColor: 'hsl(var(--popover))',
+          overflow: 'hidden',
+        }}
+      >
+        <img
+          src={thumbnail}
+          alt={name}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        />
+      </div>
+
+      {/* Content */}
+      <div style={{ padding: '16px' }}>
+        <h3
+          style={{
+            fontSize: '14px',
+            fontWeight: 600,
+            color: 'hsl(var(--foreground))',
+            marginBottom: '4px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {name}
+        </h3>
+
+        <p
+          style={{
+            fontSize: '12px',
+            fontWeight: 400,
+            color: 'hsl(var(--muted-foreground))',
+            marginBottom: '12px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {description}
+        </p>
+
+        {/* Metadata */}
+        <div
+          className="flex items-center justify-between"
+          style={{
+            fontSize: '12px',
+            fontWeight: 400,
+            color: 'hsl(var(--muted-foreground))',
+            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            paddingTop: '12px',
+          }}
+        >
+          <span>{date}</span>
+          <span>{collaborators} collaborator{collaborators !== 1 ? 's' : ''}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
