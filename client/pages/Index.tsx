@@ -118,29 +118,6 @@ export default function Index() {
           </div>
         </section>
 
-        {/* Templates Section */}
-        <section className="max-w-4xl mx-auto px-8 py-32 border-t border-neutral-900/50">
-          <h2 className="text-3xl font-bold mb-12">Start from Templates</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { name: 'Mobile App', icon: '📱' },
-              { name: 'Web Design', icon: '🌐' },
-              { name: 'Game UI', icon: '🎮' },
-              { name: 'Dashboard', icon: '📊' },
-            ].map((template) => (
-              <button
-                key={template.name}
-                className="group p-6 rounded-lg bg-neutral-950 border border-neutral-800/50 hover:border-neutral-700 hover:bg-neutral-900/50 transition-all text-left"
-              >
-                <div className="text-3xl mb-3">{template.icon}</div>
-                <h4 className="font-semibold text-sm flex items-center gap-2">
-                  {template.name}
-                  <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </h4>
-              </button>
-            ))}
-          </div>
-        </section>
 
         {/* Recent Projects */}
         <section className="max-w-4xl mx-auto px-8 py-32 border-t border-neutral-900/50">
