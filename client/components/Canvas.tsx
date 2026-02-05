@@ -1,34 +1,32 @@
-import { ZoomIn, ZoomOut, Maximize2, Plus } from 'lucide-react';
+import { ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-
-interface CanvasElement {
-  id: string;
-  type: 'rectangle' | 'text' | 'image';
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  content?: string;
-  fill?: string;
-  selected?: boolean;
-}
+import type { CanvasElement } from '@/pages/Editor';
 
 interface CanvasProps {
   activeTool?: string;
+  elements?: CanvasElement[];
+  onElementsChange?: (elements: CanvasElement[]) => void;
+  selectedId?: string | null;
+  onSelectElement?: (id: string | null) => void;
 }
 
-export function Canvas({ activeTool = 'select' }: CanvasProps) {
+export function Canvas({
+  activeTool = 'select',
+  elements = [],
+  onElementsChange,
+  selectedId = null,
+  onSelectElement,
+}: CanvasProps) {
   const [zoom, setZoom] = useState(100);
-  const [elements, setElements] = useState<CanvasElement[]>([]);
   const [isDrawing, setIsDrawing] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [previewElement, setPreviewElement] = useState<CanvasElement | null>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (activeTool === 'select' || activeTool === 'select-area') return;
-    
+    if (activeTool === 'select' || activeTool === 'select-area' || !activeTool) return;
+
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return;
 
@@ -37,10 +35,11 @@ export function Canvas({ activeTool = 'select' }: CanvasProps) {
 
     setIsDrawing(true);
     setStartPos({ x, y });
+    setPreviewElement(null);
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDrawing || activeTool === 'select') return;
+    if (!isDrawing) return;
 
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return;
@@ -48,40 +47,55 @@ export function Canvas({ activeTool = 'select' }: CanvasProps) {
     const x = (e.clientX - rect.left) / (zoom / 100);
     const y = (e.clientY - rect.top) / (zoom / 100);
 
-    // Just track for visual feedback if needed
+    const width = Math.abs(x - startPos.x);
+    const height = Math.abs(y - startPos.y);
+
+    // Show preview while dragging
+    setPreviewElement({
+      id: 'preview',
+      type: activeTool as 'rectangle' | 'text' | 'image',
+      x: Math.min(startPos.x, x),
+      y: Math.min(startPos.y, y),
+      width,
+      height,
+      fill: activeTool === 'rectangle' ? '#a855f7' : undefined,
+      content: activeTool === 'text' ? 'Text' : undefined,
+    });
   };
 
   const handleMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDrawing || activeTool === 'select') return;
+    if (!isDrawing) return;
 
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return;
 
-    const endX = (e.clientX - rect.left) / (zoom / 100);
-    const endY = (e.clientY - rect.top) / (zoom / 100);
+    const x = (e.clientX - rect.left) / (zoom / 100);
+    const y = (e.clientY - rect.top) / (zoom / 100);
+
+    const width = Math.abs(x - startPos.x);
+    const height = Math.abs(y - startPos.y);
 
     // Only create if drag distance is meaningful
-    const minSize = 30;
-    const width = Math.abs(endX - startPos.x);
-    const height = Math.abs(endY - startPos.y);
-
+    const minSize = 20;
     if (width > minSize && height > minSize) {
       const newElement: CanvasElement = {
         id: `element-${Date.now()}`,
         type: activeTool as 'rectangle' | 'text' | 'image',
-        x: Math.min(startPos.x, endX),
-        y: Math.min(startPos.y, endY),
+        x: Math.min(startPos.x, x),
+        y: Math.min(startPos.y, y),
         width,
         height,
-        content: activeTool === 'text' ? 'Text' : undefined,
         fill: activeTool === 'rectangle' ? '#a855f7' : undefined,
+        content: activeTool === 'text' ? 'Text' : undefined,
       };
 
-      setElements([...elements, newElement]);
-      setSelectedId(newElement.id);
+      const newElements = [...elements, newElement];
+      onElementsChange?.(newElements);
+      onSelectElement?.(newElement.id);
     }
 
     setIsDrawing(false);
+    setPreviewElement(null);
   };
 
   const handleZoomIn = () => {
@@ -99,7 +113,13 @@ export function Canvas({ activeTool = 'select' }: CanvasProps) {
   const handleElementClick = (e: React.MouseEvent, elementId: string) => {
     e.stopPropagation();
     if (activeTool === 'select') {
-      setSelectedId(elementId);
+      onSelectElement?.(elementId);
+    }
+  };
+
+  const handleCanvasClick = () => {
+    if (activeTool === 'select') {
+      onSelectElement?.(null);
     }
   };
 
@@ -113,6 +133,7 @@ export function Canvas({ activeTool = 'select' }: CanvasProps) {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={() => setIsDrawing(false)}
+        onClick={handleCanvasClick}
       >
         {/* Grid Pattern - Subtle (30% opacity) */}
         <div
@@ -133,7 +154,7 @@ export function Canvas({ activeTool = 'select' }: CanvasProps) {
             zoom: `${zoom}%`,
           }}
         >
-          {elements.length === 0 && (
+          {elements.length === 0 && !isDrawing && (
             <div className="flex flex-col items-center gap-3 text-center">
               <p className="text-sm text-muted-foreground">
                 Select a tool and click-drag to create elements
@@ -142,19 +163,20 @@ export function Canvas({ activeTool = 'select' }: CanvasProps) {
           )}
         </div>
 
-        {/* Elements */}
+        {/* Elements and Preview */}
         <div
           style={{
             zoom: `${zoom}%`,
             transformOrigin: 'top left',
           }}
         >
+          {/* Existing elements */}
           {elements.map((element) => (
             <div
               key={element.id}
               onClick={(e) => handleElementClick(e, element.id)}
-              className={`absolute cursor-pointer transition-all ${
-                selectedId === element.id ? 'ring-2 ring-primary' : 'hover:ring-1 hover:ring-primary/50'
+              className={`absolute cursor-pointer transition-all pointer-events-auto ${
+                selectedId === element.id ? 'ring-2 ring-primary shadow-md' : 'hover:ring-1 hover:ring-primary/50'
               }`}
               style={{
                 left: `${element.x}px`,
@@ -165,7 +187,7 @@ export function Canvas({ activeTool = 'select' }: CanvasProps) {
             >
               {element.type === 'rectangle' && (
                 <div
-                  className="w-full h-full rounded"
+                  className="w-full h-full rounded transition-all"
                   style={{
                     backgroundColor: element.fill || '#a855f7',
                     opacity: 0.8,
@@ -173,8 +195,8 @@ export function Canvas({ activeTool = 'select' }: CanvasProps) {
                 />
               )}
               {element.type === 'text' && (
-                <div className="w-full h-full flex items-center justify-center bg-secondary/50 rounded p-2">
-                  <span className="text-xs text-foreground text-center">{element.content}</span>
+                <div className="w-full h-full flex items-center justify-center bg-secondary/50 rounded p-2 border border-border/50">
+                  <span className="text-xs text-foreground text-center overflow-hidden overflow-ellipsis">{element.content}</span>
                 </div>
               )}
               {element.type === 'image' && (
@@ -184,6 +206,40 @@ export function Canvas({ activeTool = 'select' }: CanvasProps) {
               )}
             </div>
           ))}
+
+          {/* Preview element while dragging */}
+          {previewElement && (
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                left: `${previewElement.x}px`,
+                top: `${previewElement.y}px`,
+                width: `${previewElement.width}px`,
+                height: `${previewElement.height}px`,
+                border: '2px dashed hsl(var(--primary))',
+              }}
+            >
+              {previewElement.type === 'rectangle' && (
+                <div
+                  className="w-full h-full rounded"
+                  style={{
+                    backgroundColor: '#a855f7',
+                    opacity: 0.3,
+                  }}
+                />
+              )}
+              {previewElement.type === 'text' && (
+                <div className="w-full h-full flex items-center justify-center bg-secondary/30 rounded p-2">
+                  <span className="text-xs text-foreground/50">Text</span>
+                </div>
+              )}
+              {previewElement.type === 'image' && (
+                <div className="w-full h-full bg-muted/30 rounded flex items-center justify-center">
+                  <span className="text-xs text-muted-foreground/50">Image</span>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
