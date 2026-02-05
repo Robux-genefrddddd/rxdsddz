@@ -135,43 +135,6 @@ export default function Index() {
             Professional design tools for Roblox. Create, export, and deploy with precision.
           </p>
 
-          {/* Search + CTA Block - Premium design */}
-          <div
-            className="max-w-2xl mx-auto mb-12 rounded-xl overflow-hidden"
-            style={{
-              animation: 'fadeInUpDelay 0.6s ease-out 0.4s both',
-              background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              backdropFilter: 'blur(10px)'
-            }}
-          >
-            <div className="flex items-center gap-1 p-1.5">
-              <div className="flex-1 flex items-center gap-3 px-4">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <path d="m21 21-4.35-4.35"></path>
-                </svg>
-                <input
-                  type="text"
-                  placeholder="Search templates, components..."
-                  className="flex-1 bg-transparent text-sm text-white placeholder-opacity-50 outline-none"
-                  style={{ color: 'rgba(255,255,255,0.68)' }}
-                />
-              </div>
-              <button
-                className="font-semibold text-sm text-white hover:opacity-90 transition-opacity flex-shrink-0"
-                style={{
-                  height: '44px',
-                  paddingLeft: '24px',
-                  paddingRight: '24px',
-                  backgroundColor: '#1E90FF',
-                  borderRadius: '8px'
-                }}
-              >
-                Search
-              </button>
-            </div>
-          </div>
 
           {/* CTA Buttons - Animated */}
           <div
