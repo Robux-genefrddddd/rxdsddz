@@ -1,6 +1,7 @@
 import {
   ChevronDown,
   ChevronRight,
+  ChevronLeft,
   Plus,
   Eye,
   Trash2,
