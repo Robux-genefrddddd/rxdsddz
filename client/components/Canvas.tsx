@@ -57,13 +57,29 @@ export function Canvas({
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDrawing) return;
-
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return;
 
     const x = (e.clientX - rect.left) / (zoom / 100);
     const y = (e.clientY - rect.top) / (zoom / 100);
+
+    // Handle dragging selected element
+    if (isDragging && selectedId) {
+      const updatedElements = elements.map((el) =>
+        el.id === selectedId
+          ? {
+              ...el,
+              x: x - dragOffset.x,
+              y: y - dragOffset.y,
+            }
+          : el
+      );
+      onElementsChange?.(updatedElements);
+      return;
+    }
+
+    // Handle drawing new shape
+    if (!isDrawing) return;
 
     const width = Math.abs(x - startPos.x);
     const height = Math.abs(y - startPos.y);
