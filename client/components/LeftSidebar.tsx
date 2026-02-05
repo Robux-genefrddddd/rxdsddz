@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const navItems = [
   { label: 'Home', icon: Home, href: '/', id: 'home' },
-  { label: 'Projects', icon: Folder, href: '/projects', id: 'projects' },
+  { label: 'My Projects', icon: Folder, href: '/projects', id: 'projects' },
   { label: 'Assets', icon: Palette, href: '/assets', id: 'assets' },
   { label: 'Components', icon: Layers3, href: '/components', id: 'components' },
   { label: 'Design System', icon: Grid3x3, href: '/design-system', id: 'design-system' },
