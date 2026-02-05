@@ -8,27 +8,27 @@ export function TopBar() {
         
         {/* Left Section: Logo and Breadcrumb */}
         <div className="flex items-center gap-3 min-w-0">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
-            <span className="text-xs font-bold text-primary-foreground">Rx</span>
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-violet-700 flex items-center justify-center flex-shrink-0">
+            <span className="text-xs font-bold text-white">Rx</span>
           </div>
-          <span className="text-sm font-semibold text-foreground hidden sm:inline">Rbxigma</span>
-          
+          <span className="text-sm font-semibold text-white hidden sm:inline">Rbxigma</span>
+
           {/* Breadcrumb */}
-          <div className="hidden sm:flex items-center gap-2 pl-3 border-l border-border/40 min-w-0">
-            <span className="text-xs text-muted-foreground truncate">My Project</span>
-            <span className="text-xs text-muted-foreground">/</span>
-            <span className="text-xs text-muted-foreground">Frame 1</span>
+          <div className="hidden sm:flex items-center gap-2 pl-3 border-l border-neutral-800 min-w-0">
+            <span className="text-xs text-neutral-500 truncate">My Project</span>
+            <span className="text-xs text-neutral-500">/</span>
+            <span className="text-xs text-neutral-500">Frame 1</span>
           </div>
         </div>
 
         {/* Center Section: Search */}
         <div className="flex-1 max-w-sm hidden lg:flex">
           <div className="relative w-full">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-600" />
             <input
               type="text"
               placeholder="Search components..."
-              className="w-full pl-9 pr-3 py-2 text-xs bg-secondary border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-0 text-foreground placeholder-muted-foreground"
+              className="w-full pl-9 pr-3 py-2 text-xs bg-neutral-900 border border-neutral-800 rounded-md focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-0 text-white placeholder-neutral-600"
             />
           </div>
         </div>
@@ -66,14 +66,14 @@ export function TopBar() {
           </Button>
 
           {/* Divider */}
-          <div className="w-px h-6 bg-border/40 mx-1" />
+          <div className="w-px h-6 bg-neutral-800 mx-1" />
 
           {/* Avatar */}
           <button
-            className="w-8 h-8 rounded-full bg-gradient-to-br from-primary/80 to-accent/80 flex items-center justify-center hover:ring-2 hover:ring-primary hover:ring-offset-2 hover:ring-offset-card transition-all"
+            className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-600 to-violet-700 flex items-center justify-center hover:ring-2 hover:ring-violet-500 hover:ring-offset-2 hover:ring-offset-black transition-all"
             title="User Profile"
           >
-            <User className="w-4 h-4 text-primary-foreground" />
+            <User className="w-4 h-4 text-white" />
           </button>
         </div>
       </div>
