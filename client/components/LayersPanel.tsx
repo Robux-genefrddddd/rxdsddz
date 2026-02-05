@@ -13,12 +13,14 @@ interface LayersPanelProps {
   elements?: CanvasElement[];
   selectedId?: string | null;
   onSelectElement?: (id: string | null) => void;
+  onToggle?: () => void;
 }
 
 export function LayersPanel({
   elements = [],
   selectedId = null,
   onSelectElement,
+  onToggle,
 }: LayersPanelProps) {
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(
     new Set(["elements"]),
