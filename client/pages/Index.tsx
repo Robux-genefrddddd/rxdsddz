@@ -173,7 +173,8 @@ export default function Index() {
             <img
               src="https://i.ibb.co/B531Dsh6/roblox-logo-roblox-symbol-meaning-history-and-evolution-3-removebg-preview.png"
               alt="Roblox"
-              className="w-32 h-32 opacity-95 hover:opacity-100 transition-opacity"
+              className="opacity-95 hover:opacity-100 transition-opacity"
+              style={{ width: '330px', height: '128px', margin: '-1px 0 0 101px' }}
             />
             <div className="space-y-1">
               <h3 className="text-xl font-bold text-white">Rbxigma</h3>
