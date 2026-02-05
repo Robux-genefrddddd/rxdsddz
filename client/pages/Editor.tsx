@@ -1,14 +1,14 @@
-import { TopBar } from '@/components/TopBar';
-import { LeftSidebar } from '@/components/LeftSidebar';
-import { LayersPanel } from '@/components/LayersPanel';
-import { Canvas } from '@/components/Canvas';
-import { RightSidebar } from '@/components/RightSidebar';
-import { Toolbar } from '@/components/Toolbar';
-import { useState } from 'react';
+import { TopBar } from "@/components/TopBar";
+import { LeftSidebar } from "@/components/LeftSidebar";
+import { LayersPanel } from "@/components/LayersPanel";
+import { Canvas } from "@/components/Canvas";
+import { RightSidebar } from "@/components/RightSidebar";
+import { Toolbar } from "@/components/Toolbar";
+import { useState } from "react";
 
 export interface CanvasElement {
   id: string;
-  type: 'rectangle' | 'text' | 'image';
+  type: "rectangle" | "text" | "image";
   x: number;
   y: number;
   width: number;
@@ -19,7 +19,7 @@ export interface CanvasElement {
 }
 
 export default function Editor() {
-  const [activeTool, setActiveTool] = useState('select');
+  const [activeTool, setActiveTool] = useState("select");
   const [elements, setElements] = useState<CanvasElement[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
@@ -44,7 +44,11 @@ export default function Editor() {
         {/* Main Editor Area */}
         <div className="flex flex-1 ml-64">
           {/* Layers Panel */}
-          <LayersPanel elements={elements} selectedId={selectedId} onSelectElement={handleElementSelect} />
+          <LayersPanel
+            elements={elements}
+            selectedId={selectedId}
+            onSelectElement={handleElementSelect}
+          />
 
           {/* Canvas */}
           <Canvas

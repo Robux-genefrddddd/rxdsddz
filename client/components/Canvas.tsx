@@ -1,8 +1,8 @@
-import { ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
-import { useState, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import type { CanvasElement } from '@/pages/Editor';
+import { ZoomIn, ZoomOut, Maximize2 } from "lucide-react";
+import { useState, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import type { CanvasElement } from "@/pages/Editor";
 
 interface CanvasProps {
   activeTool?: string;
@@ -16,7 +16,7 @@ const DRAG_THRESHOLD = 8;
 const SNAP_GRID = 8;
 
 export function Canvas({
-  activeTool = 'select',
+  activeTool = "select",
   elements = [],
   onElementsChange,
   selectedId = null,
@@ -30,12 +30,14 @@ export function Canvas({
     x: number;
     y: number;
   } | null>(null);
-  const [previewElement, setPreviewElement] = useState<CanvasElement | null>(null);
+  const [previewElement, setPreviewElement] = useState<CanvasElement | null>(
+    null,
+  );
   const canvasRef = useRef<HTMLDivElement>(null);
 
   const dragStateRef = useRef({
     pointerId: -1,
-    elementId: '',
+    elementId: "",
     startClientX: 0,
     startClientY: 0,
     elementStartX: 0,
@@ -58,7 +60,7 @@ export function Canvas({
     const canvasY = (e.clientY - rect.top) / (zoom / 100);
 
     // Select tool: prepare drag
-    if (activeTool === 'select' && selectedId) {
+    if (activeTool === "select" && selectedId) {
       const element = elements.find((el) => el.id === selectedId);
       if (element) {
         dragStateRef.current = {
@@ -76,11 +78,11 @@ export function Canvas({
     }
 
     // Drawing tool: start creating shape
-    if (activeTool !== 'select' && activeTool !== 'select-area') {
+    if (activeTool !== "select" && activeTool !== "select-area") {
       setIsDrawing(true);
       dragStateRef.current = {
         pointerId: e.pointerId,
-        elementId: '',
+        elementId: "",
         startClientX: canvasX,
         startClientY: canvasY,
         elementStartX: canvasX,
@@ -102,7 +104,7 @@ export function Canvas({
     const canvasY = (e.clientY - rect.top) / (zoom / 100);
 
     // Handle drag (Select mode)
-    if (dragStateRef.current.elementId && activeTool === 'select') {
+    if (dragStateRef.current.elementId && activeTool === "select") {
       const dx = e.clientX - dragStateRef.current.startClientX;
       const dy = e.clientY - dragStateRef.current.startClientY;
 
@@ -114,8 +116,12 @@ export function Canvas({
       }
 
       // Calculate new position with snapping
-      const newX = snapToGrid(dragStateRef.current.elementStartX + dx / (zoom / 100));
-      const newY = snapToGrid(dragStateRef.current.elementStartY + dy / (zoom / 100));
+      const newX = snapToGrid(
+        dragStateRef.current.elementStartX + dx / (zoom / 100),
+      );
+      const newY = snapToGrid(
+        dragStateRef.current.elementStartY + dy / (zoom / 100),
+      );
 
       setDragOverlay({
         id: dragStateRef.current.elementId,
@@ -126,7 +132,7 @@ export function Canvas({
     }
 
     // Handle drawing
-    if (isDrawing && activeTool !== 'select') {
+    if (isDrawing && activeTool !== "select") {
       const startX = dragStateRef.current.startClientX;
       const startY = dragStateRef.current.startClientY;
 
@@ -135,14 +141,14 @@ export function Canvas({
 
       if (width > 10 || height > 10) {
         setPreviewElement({
-          id: 'preview',
-          type: activeTool as 'rectangle' | 'text' | 'image',
+          id: "preview",
+          type: activeTool as "rectangle" | "text" | "image",
           x: Math.min(startX, canvasX),
           y: Math.min(startY, canvasY),
           width,
           height,
-          fill: activeTool === 'rectangle' ? '#a855f7' : undefined,
-          content: activeTool === 'text' ? 'Text' : undefined,
+          fill: activeTool === "rectangle" ? "#a855f7" : undefined,
+          content: activeTool === "text" ? "Text" : undefined,
         });
       }
     }
@@ -158,13 +164,19 @@ export function Canvas({
     const canvasY = (e.clientY - rect.top) / (zoom / 100);
 
     // Commit drag (Select mode)
-    if (dragStateRef.current.elementId && isDragging && activeTool === 'select') {
-      const element = elements.find((el) => el.id === dragStateRef.current.elementId);
+    if (
+      dragStateRef.current.elementId &&
+      isDragging &&
+      activeTool === "select"
+    ) {
+      const element = elements.find(
+        (el) => el.id === dragStateRef.current.elementId,
+      );
       if (element && dragOverlay) {
         const updatedElements = elements.map((el) =>
           el.id === dragStateRef.current.elementId
             ? { ...el, x: dragOverlay.x, y: dragOverlay.y }
-            : el
+            : el,
         );
         onElementsChange?.(updatedElements);
       }
@@ -173,20 +185,20 @@ export function Canvas({
     }
 
     // Commit drawing
-    if (isDrawing && activeTool !== 'select' && previewElement) {
+    if (isDrawing && activeTool !== "select" && previewElement) {
       const width = Math.abs(canvasX - dragStateRef.current.startClientX);
       const height = Math.abs(canvasY - dragStateRef.current.startClientY);
 
       if (width > 10 && height > 10) {
         const newElement: CanvasElement = {
           id: `element-${Date.now()}`,
-          type: activeTool as 'rectangle' | 'text' | 'image',
+          type: activeTool as "rectangle" | "text" | "image",
           x: snapToGrid(previewElement.x),
           y: snapToGrid(previewElement.y),
           width: snapToGrid(width),
           height: snapToGrid(height),
-          fill: activeTool === 'rectangle' ? '#a855f7' : undefined,
-          content: activeTool === 'text' ? 'Text' : undefined,
+          fill: activeTool === "rectangle" ? "#a855f7" : undefined,
+          content: activeTool === "text" ? "Text" : undefined,
         };
 
         const newElements = [...elements, newElement];
@@ -199,7 +211,7 @@ export function Canvas({
 
     dragStateRef.current = {
       pointerId: -1,
-      elementId: '',
+      elementId: "",
       startClientX: 0,
       startClientY: 0,
       elementStartX: 0,
@@ -216,7 +228,7 @@ export function Canvas({
       setPreviewElement(null);
       dragStateRef.current = {
         pointerId: -1,
-        elementId: '',
+        elementId: "",
         startClientX: 0,
         startClientY: 0,
         elementStartX: 0,
@@ -239,7 +251,7 @@ export function Canvas({
   };
 
   const handleCanvasClick = () => {
-    if (activeTool === 'select' && !isDragging) {
+    if (activeTool === "select" && !isDragging) {
       onSelectElement?.(null);
     }
   };
@@ -250,15 +262,15 @@ export function Canvas({
       <div
         ref={canvasRef}
         className={cn(
-          'flex-1 overflow-auto relative bg-grid',
-          activeTool === 'select' ? 'cursor-pointer' : 'cursor-crosshair'
+          "flex-1 overflow-auto relative bg-grid",
+          activeTool === "select" ? "cursor-pointer" : "cursor-crosshair",
         )}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerCancel}
         onClick={handleCanvasClick}
-        style={{ touchAction: 'none' }}
+        style={{ touchAction: "none" }}
       >
         {/* Grid Pattern - Subtle (30% opacity) */}
         <div
@@ -268,7 +280,7 @@ export function Canvas({
               linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px),
               linear-gradient(0deg, hsl(var(--border) / 0.3) 1px, transparent 1px)
             `,
-            backgroundSize: '20px 20px',
+            backgroundSize: "20px 20px",
           }}
         />
 
@@ -292,7 +304,7 @@ export function Canvas({
         <div
           style={{
             zoom: `${zoom}%`,
-            transformOrigin: 'top left',
+            transformOrigin: "top left",
           }}
         >
           {/* Existing elements (with placeholder while dragging) */}
@@ -317,7 +329,7 @@ export function Canvas({
                 {/* Element */}
                 <div
                   onPointerDown={(e) => {
-                    if (activeTool !== 'select') return;
+                    if (activeTool !== "select") return;
                     e.stopPropagation();
 
                     if (selectedId === element.id) {
@@ -327,10 +339,10 @@ export function Canvas({
                     }
                   }}
                   className={cn(
-                    'absolute pointer-events-auto transition-shadow',
-                    activeTool === 'select' && selectedId === element.id
-                      ? 'ring-2 ring-primary shadow-md cursor-grab active:cursor-grabbing'
-                      : 'cursor-pointer hover:ring-1 hover:ring-primary/50'
+                    "absolute pointer-events-auto transition-shadow",
+                    activeTool === "select" && selectedId === element.id
+                      ? "ring-2 ring-primary shadow-md cursor-grab active:cursor-grabbing"
+                      : "cursor-pointer hover:ring-1 hover:ring-primary/50",
                   )}
                   style={{
                     left: `${isBeingDragged ? dragOverlay!.x : element.x}px`,
@@ -340,24 +352,26 @@ export function Canvas({
                     opacity: isBeingDragged ? 0.6 : 1,
                   }}
                 >
-                  {element.type === 'rectangle' && (
+                  {element.type === "rectangle" && (
                     <div
                       className="w-full h-full"
                       style={{
-                        backgroundColor: element.fill || '#a855f7',
+                        backgroundColor: element.fill || "#a855f7",
                       }}
                     />
                   )}
-                  {element.type === 'text' && (
+                  {element.type === "text" && (
                     <div className="w-full h-full flex items-center justify-center bg-secondary p-2 border border-border/50">
                       <span className="text-xs text-foreground text-center overflow-hidden overflow-ellipsis">
                         {element.content}
                       </span>
                     </div>
                   )}
-                  {element.type === 'image' && (
+                  {element.type === "image" && (
                     <div className="w-full h-full bg-muted border border-border flex items-center justify-center">
-                      <span className="text-xs text-muted-foreground">Image</span>
+                      <span className="text-xs text-muted-foreground">
+                        Image
+                      </span>
                     </div>
                   )}
                 </div>
@@ -374,26 +388,28 @@ export function Canvas({
                 top: `${previewElement.y}px`,
                 width: `${previewElement.width}px`,
                 height: `${previewElement.height}px`,
-                border: '2px dashed hsl(var(--primary))',
+                border: "2px dashed hsl(var(--primary))",
               }}
             >
-              {previewElement.type === 'rectangle' && (
+              {previewElement.type === "rectangle" && (
                 <div
                   className="w-full h-full"
                   style={{
-                    backgroundColor: '#a855f7',
+                    backgroundColor: "#a855f7",
                     opacity: 0.3,
                   }}
                 />
               )}
-              {previewElement.type === 'text' && (
+              {previewElement.type === "text" && (
                 <div className="w-full h-full flex items-center justify-center bg-secondary/30 p-2">
                   <span className="text-xs text-foreground/50">Text</span>
                 </div>
               )}
-              {previewElement.type === 'image' && (
+              {previewElement.type === "image" && (
                 <div className="w-full h-full bg-muted/30 flex items-center justify-center">
-                  <span className="text-xs text-muted-foreground/50">Image</span>
+                  <span className="text-xs text-muted-foreground/50">
+                    Image
+                  </span>
                 </div>
               )}
             </div>
@@ -404,13 +420,23 @@ export function Canvas({
       {/* Zoom Controls */}
       <div className="bg-card border-t border-border px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" onClick={handleZoomOut} title="Zoom Out">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleZoomOut}
+            title="Zoom Out"
+          >
             <ZoomOut className="w-4 h-4" />
           </Button>
           <span className="text-xs font-medium text-muted-foreground w-12 text-center">
             {zoom}%
           </span>
-          <Button variant="ghost" size="sm" onClick={handleZoomIn} title="Zoom In">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleZoomIn}
+            title="Zoom In"
+          >
             <ZoomIn className="w-4 h-4" />
           </Button>
         </div>
@@ -427,7 +453,7 @@ export function Canvas({
         </Button>
 
         <div className="text-xs text-muted-foreground">
-          {elements.length} element{elements.length !== 1 ? 's' : ''}
+          {elements.length} element{elements.length !== 1 ? "s" : ""}
         </div>
       </div>
     </div>
