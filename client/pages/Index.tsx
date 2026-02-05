@@ -51,8 +51,16 @@ export default function Index() {
           {/* CTA */}
           <Link
             to="/editor"
-            className="px-6 font-semibold text-xs text-black bg-white hover:bg-neutral-100 transition-colors"
-            style={{ height: '44px', display: 'flex', alignItems: 'center', borderRadius: '999px' }}
+            className="font-semibold text-xs text-white hover:opacity-90 transition-opacity"
+            style={{
+              height: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              borderRadius: '10px',
+              paddingLeft: '18px',
+              paddingRight: '18px',
+              backgroundColor: '#1E90FF'
+            }}
           >
             Get Started
           </Link>
