@@ -242,28 +242,27 @@ export function Canvas({
                 activeTool === 'select' && selectedId === element.id ? 'ring-2 ring-primary shadow-md cursor-grab active:cursor-grabbing' : 'cursor-pointer hover:ring-1 hover:ring-primary/50'
               )}
               style={{
-                left: `${element.x}px`,
-                top: `${element.y}px`,
+                left: `${element.x + (selectedId === element.id ? dragDelta.x : 0)}px`,
+                top: `${element.y + (selectedId === element.id ? dragDelta.y : 0)}px`,
                 width: `${element.width}px`,
                 height: `${element.height}px`,
               }}
             >
               {element.type === 'rectangle' && (
                 <div
-                  className="w-full h-full rounded transition-all"
+                  className="w-full h-full"
                   style={{
                     backgroundColor: element.fill || '#a855f7',
-                    opacity: 0.8,
                   }}
                 />
               )}
               {element.type === 'text' && (
-                <div className="w-full h-full flex items-center justify-center bg-secondary/50 rounded p-2 border border-border/50">
+                <div className="w-full h-full flex items-center justify-center bg-secondary p-2 border border-border/50">
                   <span className="text-xs text-foreground text-center overflow-hidden overflow-ellipsis">{element.content}</span>
                 </div>
               )}
               {element.type === 'image' && (
-                <div className="w-full h-full bg-muted rounded border border-border flex items-center justify-center">
+                <div className="w-full h-full bg-muted border border-border flex items-center justify-center">
                   <span className="text-xs text-muted-foreground">Image</span>
                 </div>
               )}
