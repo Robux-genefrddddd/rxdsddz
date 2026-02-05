@@ -229,14 +229,26 @@ export function Canvas({
             <div
               key={element.id}
               onMouseDown={(e) => {
-                if (activeTool === 'select') {
-                  e.stopPropagation();
-                  handleElementClick(e as any, element.id);
-                  handleMouseDown(e as any);
+                if (activeTool !== 'select') return;
+                e.stopPropagation();
+
+                // If already selected, start drag
+                if (selectedId === element.id) {
+                  const rect = canvasRef.current?.getBoundingClientRect();
+                  if (rect) {
+                    const x = (e.clientX - rect.left) / (zoom / 100);
+                    const y = (e.clientY - rect.top) / (zoom / 100);
+                    setIsDragging(true);
+                    dragStartRef.current = { x, y };
+                    setDragDelta({ x: 0, y: 0 });
+                  }
+                } else {
+                  // Not selected yet, just select it
+                  onSelectElement?.(element.id);
                 }
               }}
               className={cn(
-                'absolute transition-all pointer-events-auto',
+                'absolute pointer-events-auto',
                 activeTool === 'select' && selectedId === element.id ? 'ring-2 ring-primary shadow-md cursor-grab active:cursor-grabbing' : 'cursor-pointer hover:ring-1 hover:ring-primary/50'
               )}
               style={{
