@@ -23,9 +23,11 @@ export function Canvas({
   const [isDrawing, setIsDrawing] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [dragDelta, setDragDelta] = useState({ x: 0, y: 0 });
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const [previewElement, setPreviewElement] = useState<CanvasElement | null>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
+  const lastPosRef = useRef({ x: 0, y: 0 });
 
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!activeTool) return;
