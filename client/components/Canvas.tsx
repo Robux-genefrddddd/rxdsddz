@@ -257,7 +257,7 @@ export function Canvas({
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-gradient-to-br from-background to-background/80 overflow-hidden">
+    <div className="flex-1 flex flex-col bg-gradient-to-br from-background via-background to-background/90 overflow-hidden">
       {/* Canvas Area */}
       <div
         ref={canvasRef}
