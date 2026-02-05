@@ -43,6 +43,7 @@ export default function Index() {
 
           {/* Menu */}
           <div className="hidden md:flex items-center gap-8">
+            <Link to="/about" className="text-xs transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.72)' }}>About</Link>
             <a href="#" className="text-xs transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.72)' }}>Docs</a>
             <a href="#" className="text-xs transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.72)' }}>Community</a>
             <a href="#" className="text-xs transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.72)' }}>Pricing</a>
