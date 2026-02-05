@@ -98,6 +98,12 @@ export function Canvas({
   };
 
   const handleMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Stop dragging
+    if (isDragging) {
+      setIsDragging(false);
+      return;
+    }
+
     if (!isDrawing) return;
 
     const rect = canvasRef.current?.getBoundingClientRect();
