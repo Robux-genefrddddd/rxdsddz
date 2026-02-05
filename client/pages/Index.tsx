@@ -157,7 +157,7 @@ export default function Index() {
         </section>
 
         {/* Features Section */}
-        <section 
+        <section
           className="max-w-5xl mx-auto px-6 py-20"
           style={{ marginTop: '48px' }}
         >
@@ -174,7 +174,7 @@ export default function Index() {
             Why Choose Rbxigma?
           </h2>
 
-          <div 
+          <div
             className="grid grid-cols-1 md:grid-cols-3 gap-5"
             style={{ marginTop: '24px' }}
           >
@@ -189,6 +189,83 @@ export default function Index() {
             <FeatureCard
               title="Collaborate"
               description="Share and work together with your team"
+            />
+          </div>
+        </section>
+
+        {/* Featured Projects Section */}
+        <section
+          className="max-w-5xl mx-auto px-6 py-20"
+          style={{ marginTop: '48px' }}
+        >
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2
+                style={{
+                  fontSize: '16px',
+                  fontWeight: 700,
+                  letterSpacing: '-0.2px',
+                  color: 'hsl(var(--foreground))',
+                  marginBottom: '4px',
+                }}
+              >
+                Featured Projects
+              </h2>
+              <p
+                style={{
+                  fontSize: '13px',
+                  fontWeight: 400,
+                  color: 'hsl(var(--muted-foreground))',
+                }}
+              >
+                Explore what creators are building
+              </p>
+            </div>
+            <Link
+              to="/projects"
+              className="inline-flex items-center gap-1 font-medium transition-all hover:gap-2"
+              style={{
+                fontSize: '13px',
+                fontWeight: 500,
+                color: 'hsl(var(--primary))',
+              }}
+            >
+              View All
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
+            style={{ marginTop: '24px' }}
+          >
+            <FeaturedProjectCard
+              name="Mobile UI Kit"
+              description="Complete mobile interface components"
+              thumbnail="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150'%3E%3Crect fill='%23303030' width='200' height='150'/%3E%3Crect fill='%232F80FF' x='40' y='30' width='120' height='90' rx='8'/%3E%3C/svg%3E"
+              date="Mar 15, 2024"
+              collaborators={3}
+            />
+            <FeaturedProjectCard
+              name="Dashboard Design"
+              description="Admin dashboard for Roblox games"
+              thumbnail="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150'%3E%3Crect fill='%23303030' width='200' height='150'/%3E%3Crect fill='%23353535' x='10' y='10' width='50' height='50'/%3E%3Crect fill='%23353535' x='70' y='10' width='50' height='50'/%3E%3Crect fill='%23353535' x='130' y='10' width='50' height='50'/%3E%3C/svg%3E"
+              date="Mar 10, 2024"
+              collaborators={2}
+            />
+            <FeaturedProjectCard
+              name="Game Store"
+              description="Premium game marketplace UI"
+              thumbnail="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150'%3E%3Crect fill='%23303030' width='200' height='150'/%3E%3Crect fill='%232F80FF' x='20' y='20' width='160' height='110' rx='6'/%3E%3C/svg%3E"
+              date="Mar 8, 2024"
+              collaborators={5}
+            />
+            <FeaturedProjectCard
+              name="Component Library"
+              description="Reusable UI component system"
+              thumbnail="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150'%3E%3Crect fill='%23303030' width='200' height='150'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%232F80FF'/%3E%3Crect x='90' y='35' width='40' height='30' fill='%232F80FF'/%3E%3Crect x='140' y='40' width='50' height='40' fill='%232F80FF' rx='6'/%3E%3C/svg%3E"
+              date="Feb 28, 2024"
+              collaborators={4}
             />
           </div>
         </section>
