@@ -70,8 +70,8 @@ export function LeftSidebar() {
               className={cn(
                 'flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all group border-l-2 border-l-transparent',
                 active
-                  ? 'bg-sidebar-accent text-sidebar-foreground border-l-primary'
-                  : 'text-sidebar-foreground/80 hover:bg-sidebar-accent/50 hover:text-foreground'
+                  ? 'bg-neutral-900 text-white border-l-violet-600'
+                  : 'text-neutral-400 hover:bg-neutral-900/50 hover:text-neutral-300'
               )}
             >
               <Icon className="w-5 h-5 flex-shrink-0" />
