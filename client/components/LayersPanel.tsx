@@ -1,238 +1,134 @@
-import { ChevronDown, ChevronRight, Plus, Eye, Lock } from 'lucide-react';
+import { ChevronDown, ChevronRight, Plus, Eye, Lock, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
+import type { CanvasElement } from '@/pages/Editor';
 
-interface Layer {
-  id: string;
-  name: string;
-  type: 'frame' | 'text' | 'group' | 'component';
-  children?: Layer[];
-  visible: boolean;
-  locked: boolean;
+interface LayersPanelProps {
+  elements?: CanvasElement[];
+  selectedId?: string | null;
+  onSelectElement?: (id: string | null) => void;
 }
 
-interface Page {
-  id: string;
-  name: string;
-  layers: Layer[];
-}
+export function LayersPanel({ elements = [], selectedId = null, onSelectElement }: LayersPanelProps) {
+  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set(['elements']));
 
-const defaultPages: Page[] = [
-  {
-    id: 'page-1',
-    name: 'Home',
-    layers: [
-      {
-        id: 'frame-1',
-        name: 'Desktop',
-        type: 'frame',
-        visible: true,
-        locked: false,
-        children: [
-          {
-            id: 'group-1',
-            name: 'Header',
-            type: 'group',
-            visible: true,
-            locked: false,
-            children: [
-              {
-                id: 'text-1',
-                name: 'Title',
-                type: 'text',
-                visible: true,
-                locked: false,
-              },
-              {
-                id: 'text-2',
-                name: 'Subtitle',
-                type: 'text',
-                visible: true,
-                locked: false,
-              },
-            ],
-          },
-          {
-            id: 'group-2',
-            name: 'Content',
-            type: 'group',
-            visible: true,
-            locked: false,
-            children: [
-              {
-                id: 'rect-1',
-                name: 'Background',
-                type: 'frame',
-                visible: true,
-                locked: false,
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-];
-
-interface LayerItemProps {
-  layer: Layer;
-  depth: number;
-}
-
-function LayerItem({ layer, depth }: LayerItemProps) {
-  const [expanded, setExpanded] = useState(true);
-  const hasChildren = layer.children && layer.children.length > 0;
-
-  return (
-    <div>
-      <div
-        className={cn(
-          'flex items-center gap-1 px-2 py-1.5 text-xs cursor-pointer hover:bg-sidebar-accent rounded group',
-          'text-sidebar-foreground'
-        )}
-        style={{ paddingLeft: `${12 + depth * 16}px` }}
-      >
-        {hasChildren && (
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className="flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-sidebar-accent rounded"
-          >
-            {expanded ? (
-              <ChevronDown className="w-3 h-3" />
-            ) : (
-              <ChevronRight className="w-3 h-3" />
-            )}
-          </button>
-        )}
-        {!hasChildren && <div className="w-4" />}
-
-        <span className="flex-1 truncate font-medium">{layer.name}</span>
-
-        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          <button
-            className="flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-sidebar-primary rounded"
-            title={layer.visible ? 'Hide' : 'Show'}
-          >
-            {layer.visible && <Eye className="w-3 h-3" />}
-          </button>
-          <button
-            className="flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-sidebar-primary rounded"
-            title={layer.locked ? 'Unlock' : 'Lock'}
-          >
-            {layer.locked && <Lock className="w-3 h-3" />}
-          </button>
-        </div>
-      </div>
-
-      {expanded && hasChildren && (
-        <div>
-          {layer.children!.map((child) => (
-            <LayerItem key={child.id} layer={child} depth={depth + 1} />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-export function LayersPanel() {
-  const [pages, setPages] = useState(defaultPages);
-  const [activePage, setActivePage] = useState(pages[0].id);
-  const [expandedPages, setExpandedPages] = useState<Set<string>>(new Set([pages[0].id]));
-
-  const addNewPage = () => {
-    const newPage: Page = {
-      id: `page-${Date.now()}`,
-      name: `Page ${pages.length + 1}`,
-      layers: [
-        {
-          id: `frame-${Date.now()}`,
-          name: 'Frame 1',
-          type: 'frame',
-          visible: true,
-          locked: false,
-        },
-      ],
-    };
-    setPages([...pages, newPage]);
-    setActivePage(newPage.id);
-    setExpandedPages(new Set([...expandedPages, newPage.id]));
+  const toggleGroup = (groupId: string) => {
+    const newExpanded = new Set(expandedGroups);
+    if (newExpanded.has(groupId)) {
+      newExpanded.delete(groupId);
+    } else {
+      newExpanded.add(groupId);
+    }
+    setExpandedGroups(newExpanded);
   };
 
-  const currentPage = pages.find((p) => p.id === activePage);
-
-  const togglePageExpanded = (pageId: string) => {
-    const newExpanded = new Set(expandedPages);
-    if (newExpanded.has(pageId)) {
-      newExpanded.delete(pageId);
-    } else {
-      newExpanded.add(pageId);
+  const getElementIcon = (type: string) => {
+    switch (type) {
+      case 'rectangle':
+        return '▢';
+      case 'text':
+        return 'A';
+      case 'image':
+        return '🖼';
+      default:
+        return '◯';
     }
-    setExpandedPages(newExpanded);
+  };
+
+  const getElementLabel = (element: CanvasElement, index: number) => {
+    if (element.type === 'rectangle') return `Rectangle ${index + 1}`;
+    if (element.type === 'text') return `Text "${element.content || 'Text'}"`;
+    if (element.type === 'image') return `Image ${index + 1}`;
+    return `Element ${index + 1}`;
   };
 
   return (
     <div className="w-64 bg-sidebar border-r border-sidebar-border flex flex-col">
-      {/* Tabs */}
+      {/* Header */}
       <div className="flex items-center border-b border-sidebar-border px-3 py-2">
         <span className="text-xs font-semibold text-sidebar-foreground">Layers</span>
       </div>
 
-      {/* Pages */}
+      {/* Content */}
       <div className="flex-1 overflow-y-auto">
+        {/* Elements Group */}
         <div className="px-1 py-2">
-          {pages.map((page) => (
-            <div key={page.id}>
-              <div className="flex items-center gap-1 px-2 py-1.5 cursor-pointer hover:bg-sidebar-accent rounded">
-                <button
-                  onClick={() => togglePageExpanded(page.id)}
-                  className="flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-sidebar-accent rounded"
-                >
-                  {expandedPages.has(page.id) ? (
-                    <ChevronDown className="w-3 h-3 text-sidebar-foreground" />
-                  ) : (
-                    <ChevronRight className="w-3 h-3 text-sidebar-foreground" />
-                  )}
-                </button>
+          <div className="flex items-center gap-1 px-2 py-1.5 cursor-pointer hover:bg-sidebar-accent rounded">
+            <button
+              onClick={() => toggleGroup('elements')}
+              className="flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-sidebar-accent rounded"
+            >
+              {expandedGroups.has('elements') ? (
+                <ChevronDown className="w-3 h-3 text-sidebar-foreground" />
+              ) : (
+                <ChevronRight className="w-3 h-3 text-sidebar-foreground" />
+              )}
+            </button>
 
+            <div className="flex-1 text-xs font-semibold text-sidebar-foreground">
+              {elements.length > 0 ? `Elements (${elements.length})` : 'No Elements'}
+            </div>
+
+            <button className="flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-sidebar-primary rounded opacity-0 group-hover:opacity-100 transition-opacity">
+              <Plus className="w-3 h-3" />
+            </button>
+          </div>
+
+          {/* Elements List */}
+          {expandedGroups.has('elements') && elements.length > 0 && (
+            <div className="mt-1 space-y-0">
+              {elements.map((element, index) => (
                 <div
+                  key={element.id}
+                  onClick={() => onSelectElement?.(element.id)}
                   className={cn(
-                    'flex-1 text-xs font-semibold cursor-pointer rounded px-2 py-1 transition-colors duration-150',
-                    activePage === page.id
-                      ? 'bg-sidebar-accent text-sidebar-foreground border-l-primary'
+                    'flex items-center gap-1 px-4 py-1.5 text-xs cursor-pointer rounded group transition-colors',
+                    selectedId === element.id
+                      ? 'bg-sidebar-accent text-sidebar-foreground'
                       : 'text-sidebar-foreground hover:bg-sidebar-accent/50'
                   )}
-                  onClick={() => setActivePage(page.id)}
                 >
-                  {page.name}
-                </div>
+                  <div className="flex-shrink-0 w-4 h-4 flex items-center justify-center text-xs font-medium opacity-60">
+                    {getElementIcon(element.type)}
+                  </div>
 
-                <button className="flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-sidebar-primary rounded">
-                  <Plus className="w-3 h-3" />
-                </button>
-              </div>
+                  <span className="flex-1 truncate font-medium text-xs">
+                    {getElementLabel(element, index)}
+                  </span>
 
-              {expandedPages.has(page.id) && (
-                <div>
-                  {page.layers.map((layer) => (
-                    <LayerItem key={layer.id} layer={layer} depth={0} />
-                  ))}
+                  <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button
+                      className="flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-sidebar-primary rounded text-sidebar-foreground transition-colors"
+                      title="Toggle visibility"
+                    >
+                      <Eye className="w-3 h-3" />
+                    </button>
+                    <button
+                      className="flex-shrink-0 w-4 h-4 flex items-center justify-center hover:bg-destructive/50 rounded text-destructive/80 transition-colors"
+                      title="Delete"
+                    >
+                      <Trash2 className="w-3 h-3" />
+                    </button>
+                  </div>
                 </div>
-              )}
+              ))}
             </div>
-          ))}
+          )}
+
+          {/* Empty State */}
+          {expandedGroups.has('elements') && elements.length === 0 && (
+            <div className="px-4 py-3 text-xs text-muted-foreground text-center">
+              No elements yet. Start drawing on the canvas.
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Add Page Button */}
-      <div className="border-t border-sidebar-border p-3">
-        <button
-          onClick={addNewPage}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded bg-primary text-primary-foreground text-xs font-medium hover:bg-primary/90 transition-colors shadow-sm hover:shadow-md active:shadow-none"
-        >
-          <Plus className="w-4 h-4" />
-          Add Page
-        </button>
+      {/* Footer Info */}
+      <div className="border-t border-sidebar-border px-3 py-2 bg-sidebar-accent/30">
+        <div className="text-xs text-sidebar-foreground/70">
+          {selectedId ? 'Selected: 1 element' : 'Select an element'}
+        </div>
       </div>
     </div>
   );
