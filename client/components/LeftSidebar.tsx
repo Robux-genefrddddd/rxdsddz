@@ -1,6 +1,5 @@
-import { Home, Folder, Palette, Layers3, Grid3x3, Zap, Download, BookOpen, Users, ChevronRight } from 'lucide-react';
+import { Home, Folder, Palette, Layers3, Grid3x3, Zap, Download, BookOpen, Users } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { cn } from '@/lib/utils';
 
 const navItems = [
   { label: 'Home', icon: Home, href: '/', id: 'home' },
@@ -28,58 +27,105 @@ export function LeftSidebar() {
   };
 
   return (
-    <div className="fixed left-0 top-14 bottom-0 w-64 bg-black border-r border-neutral-900 flex flex-col">
+    <div 
+      className="fixed left-0 top-14 bottom-0 flex flex-col border-r"
+      style={{
+        width: '240px',
+        backgroundColor: 'hsl(var(--popover))',
+        borderColor: 'rgba(255, 255, 255, 0.08)',
+        boxShadow: 'var(--shadow-sm)',
+      }}
+    >
       
       {/* Main Navigation */}
-      <nav className="flex-1 px-2 py-4 overflow-y-auto space-y-1">
+      <nav 
+        className="flex-1 overflow-y-auto space-y-1"
+        style={{
+          padding: '16px 12px',
+        }}
+      >
         {navItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.href);
 
           return (
-            <Link
+            <SidebarItem
               key={item.id}
-              to={item.href}
-              className={cn(
-                'flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-all group border-l-2 border-l-transparent',
-                active
-                  ? 'bg-neutral-900 text-white border-l-violet-600'
-                  : 'text-neutral-400 hover:bg-neutral-900/50 hover:text-neutral-300'
-              )}
-            >
-              <Icon className="w-5 h-5 flex-shrink-0" />
-              <span className="flex-1">{item.label}</span>
-              {active && (
-                <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-              )}
-            </Link>
+              icon={<Icon className="w-4 h-4 flex-shrink-0" />}
+              label={item.label}
+              href={item.href}
+              active={active}
+            />
           );
         })}
       </nav>
 
       {/* Bottom Navigation */}
-      <div className="border-t border-neutral-900 px-2 py-4 space-y-1">
+      <div 
+        className="space-y-1 border-t"
+        style={{
+          borderColor: 'rgba(255, 255, 255, 0.08)',
+          padding: '16px 12px',
+        }}
+      >
         {bottomItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.href);
 
           return (
-            <Link
+            <SidebarItem
               key={item.id}
-              to={item.href}
-              className={cn(
-                'flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all group border-l-2 border-l-transparent',
-                active
-                  ? 'bg-neutral-900 text-white border-l-violet-600'
-                  : 'text-neutral-400 hover:bg-neutral-900/50 hover:text-neutral-300'
-              )}
-            >
-              <Icon className="w-5 h-5 flex-shrink-0" />
-              <span className="flex-1 text-xs">{item.label}</span>
-            </Link>
+              icon={<Icon className="w-4 h-4 flex-shrink-0" />}
+              label={item.label}
+              href={item.href}
+              active={active}
+            />
           );
         })}
       </div>
     </div>
+  );
+}
+
+// Sidebar Item Component
+function SidebarItem({
+  icon,
+  label,
+  href,
+  active,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  href: string;
+  active: boolean;
+}) {
+  return (
+    <Link
+      to={href}
+      className="group flex items-center gap-3 px-3 py-2 rounded-lg transition-all"
+      style={{
+        height: '40px',
+        fontSize: '14px',
+        fontWeight: 500,
+        backgroundColor: active ? 'hsl(var(--secondary))' : 'transparent',
+        color: active ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))',
+        cursor: 'pointer',
+      }}
+      onMouseEnter={(e) => {
+        if (!active) {
+          e.currentTarget.style.backgroundColor = 'hsl(var(--secondary))';
+          e.currentTarget.style.color = 'hsl(var(--foreground))';
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (!active) {
+          e.currentTarget.style.backgroundColor = 'transparent';
+          e.currentTarget.style.color = 'hsl(var(--muted-foreground))';
+        }
+      }}
+    >
+      {icon}
+      <span className="flex-1">{label}</span>
+    </Link>
   );
 }
