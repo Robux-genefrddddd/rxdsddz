@@ -66,18 +66,12 @@ export function Canvas({
     const x = (e.clientX - rect.left) / (zoom / 100);
     const y = (e.clientY - rect.top) / (zoom / 100);
 
-    // Handle dragging selected element
+    // Handle dragging selected element (smooth with delta offset)
     if (isDragging && selectedId) {
-      const updatedElements = elements.map((el) =>
-        el.id === selectedId
-          ? {
-              ...el,
-              x: x - dragOffset.x,
-              y: y - dragOffset.y,
-            }
-          : el
-      );
-      onElementsChange?.(updatedElements);
+      setDragDelta({
+        x: x - dragOffset.x,
+        y: y - dragOffset.y,
+      });
       return;
     }
 
