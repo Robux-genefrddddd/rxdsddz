@@ -43,15 +43,16 @@ export default function Index() {
 
           {/* Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#" className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors">Docs</a>
-            <a href="#" className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors">Community</a>
-            <a href="#" className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors">Pricing</a>
+            <a href="#" className="text-xs transition-colors" style={{ color: 'rgba(255,255,255,0.72)' }}>Docs</a>
+            <a href="#" className="text-xs transition-colors" style={{ color: 'rgba(255,255,255,0.72)' }}>Community</a>
+            <a href="#" className="text-xs transition-colors" style={{ color: 'rgba(255,255,255,0.72)' }}>Pricing</a>
           </div>
 
           {/* CTA */}
           <Link
             to="/editor"
-            className="px-5 py-2 bg-white text-black rounded-lg text-xs font-semibold hover:bg-neutral-100 transition-colors"
+            className="px-6 font-semibold text-xs text-black bg-white hover:bg-neutral-100 transition-colors"
+            style={{ height: '44px', display: 'flex', alignItems: 'center', borderRadius: '999px' }}
           >
             Get Started
           </Link>
