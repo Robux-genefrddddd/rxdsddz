@@ -176,28 +176,34 @@ export default function Index() {
             </div>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          {/* CTA Buttons - Animated */}
+          <div
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            style={{
+              animation: 'fadeInUpDelay 0.6s ease-out 0.6s both'
+            }}
+          >
             <Link
               to="/editor"
-              className="flex items-center justify-center gap-2 px-8 font-semibold text-sm text-white hover:opacity-90 transition-opacity"
+              className="flex items-center justify-center gap-2 px-8 font-semibold text-sm text-white hover:shadow-lg transition-all"
               style={{
                 height: '48px',
                 backgroundColor: '#1E90FF',
                 borderRadius: '12px',
-                boxShadow: '0 4px 12px rgba(30, 144, 255, 0.2)'
+                boxShadow: '0 4px 16px rgba(30, 144, 255, 0.25)',
+                border: '1px solid rgba(30, 144, 255, 0.3)'
               }}
             >
               <Plus className="w-4 h-4" />
               Create Project
             </Link>
             <button
-              className="px-8 font-semibold text-sm transition-colors"
+              className="px-8 font-semibold text-sm transition-all hover:border-opacity-30"
               style={{
                 height: '48px',
                 color: 'white',
-                border: '1px solid rgba(255,255,255,0.10)',
-                backgroundColor: 'transparent',
+                border: '1px solid rgba(255,255,255,0.15)',
+                backgroundColor: 'rgba(255,255,255,0.03)',
                 borderRadius: '12px'
               }}
             >
