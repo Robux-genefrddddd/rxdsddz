@@ -51,7 +51,7 @@ export function RightSidebar() {
         type="text"
         defaultValue={value}
         placeholder={placeholder}
-        className="w-full px-2 py-1.5 text-xs bg-secondary border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-0 text-foreground placeholder-muted-foreground"
+        className="w-full px-3 py-2 text-xs bg-secondary border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-0 text-foreground placeholder-muted-foreground"
       />
     </div>
   );
@@ -59,7 +59,7 @@ export function RightSidebar() {
   return (
     <div className="w-80 bg-background border-l border-border flex flex-col">
       {/* Tabs */}
-      <div className="flex border-b border-border">
+      <div className="flex border-b border-border h-11">
         {[
           { id: 'design', label: 'Design', icon: Sliders },
           { id: 'prototype', label: 'Prototype', icon: Zap },
@@ -71,7 +71,7 @@ export function RightSidebar() {
               key={tab.id}
               onClick={() => setActiveTab(tab.id as TabType)}
               className={cn(
-                'flex-1 flex items-center justify-center gap-2 px-3 py-3 text-xs font-medium border-b-2 transition-colors',
+                'flex-1 flex items-center justify-center gap-2 px-3 py-2 text-xs font-medium border-b-2 transition-colors',
                 activeTab === tab.id
                   ? 'border-primary text-primary'
                   : 'border-transparent text-muted-foreground hover:text-foreground'
@@ -91,7 +91,7 @@ export function RightSidebar() {
             {/* Size & Position */}
             {expandedSections.has('size') && (
               <>
-                <SectionHeader title="Size" id="size" />
+                <SectionHeader title="Size & Position" id="size" />
                 <div className="px-4 py-3 space-y-3">
                   <div className="grid grid-cols-2 gap-2">
                     <PropertyInput label="W" value="320" placeholder="Width" />
@@ -133,7 +133,7 @@ export function RightSidebar() {
 
                   <div className="space-y-2">
                     <label className="text-xs font-medium text-muted-foreground block">Layout Mode</label>
-                    <select className="w-full px-2 py-1.5 text-xs bg-secondary border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-foreground">
+                    <select className="w-full px-3 py-2 text-xs bg-secondary border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-foreground">
                       <option>None</option>
                       <option>UIListLayout</option>
                       <option>UIGridLayout</option>
@@ -155,7 +155,7 @@ export function RightSidebar() {
                       <input
                         type="text"
                         placeholder="Color"
-                        className="flex-1 px-2 py-1.5 text-xs bg-secondary border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-muted-foreground"
+                        className="flex-1 px-3 py-2 text-xs bg-secondary border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder-muted-foreground"
                       />
                     </div>
                   </div>
@@ -165,14 +165,14 @@ export function RightSidebar() {
                   <div className="space-y-2">
                     <label className="text-xs font-medium text-muted-foreground block">Stroke</label>
                     <div className="flex gap-2">
-                      <input type="text" placeholder="Width" className="flex-1 px-2 py-1.5 text-xs bg-secondary border border-border rounded-md text-foreground" />
+                      <input type="text" placeholder="Width" className="flex-1 px-3 py-2 text-xs bg-secondary border border-border rounded-md text-foreground" />
                       <button className="w-10 h-10 rounded-md bg-input border border-border" />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-xs font-medium text-muted-foreground block">Shadow</label>
-                    <select className="w-full px-2 py-1.5 text-xs bg-secondary border border-border rounded-md text-foreground">
+                    <select className="w-full px-3 py-2 text-xs bg-secondary border border-border rounded-md text-foreground">
                       <option>None</option>
                       <option>Small</option>
                       <option>Medium</option>
@@ -201,7 +201,7 @@ export function RightSidebar() {
             </Button>
             <div className="space-y-2">
               <label className="text-xs font-medium text-muted-foreground block">Export Preset</label>
-              <select className="w-full px-2 py-1.5 text-xs bg-secondary border border-border rounded-md text-foreground">
+              <select className="w-full px-3 py-2 text-xs bg-secondary border border-border rounded-md text-foreground">
                 <option>PNG @1x</option>
                 <option>PNG @2x</option>
                 <option>SVG</option>
