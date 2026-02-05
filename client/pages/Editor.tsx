@@ -22,6 +22,7 @@ export default function Editor() {
   const [activeTool, setActiveTool] = useState("select");
   const [elements, setElements] = useState<CanvasElement[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [layersVisible, setLayersVisible] = useState(true);
 
   const handleElementsChange = (newElements: CanvasElement[]) => {
     setElements(newElements);
