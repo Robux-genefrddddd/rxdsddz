@@ -45,11 +45,14 @@ export default function Editor() {
         {/* Main Editor Area */}
         <div className="flex flex-1 ml-64">
           {/* Layers Panel */}
-          <LayersPanel
-            elements={elements}
-            selectedId={selectedId}
-            onSelectElement={handleElementSelect}
-          />
+          {layersVisible && (
+            <LayersPanel
+              elements={elements}
+              selectedId={selectedId}
+              onSelectElement={handleElementSelect}
+              onToggle={() => setLayersVisible(false)}
+            />
+          )}
 
           {/* Canvas */}
           <Canvas
