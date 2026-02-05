@@ -6,19 +6,8 @@ import { RightSidebar } from '@/components/RightSidebar';
 import { Toolbar } from '@/components/Toolbar';
 import { useState } from 'react';
 
-interface Frame {
-  id: string;
-  name: string;
-  width: number;
-  height: number;
-}
-
 export default function Editor() {
-  const [frames, setFrames] = useState<Frame[]>([]);
-
-  const handleFrameCreate = (frame: Frame) => {
-    setFrames([...frames, frame]);
-  };
+  const [activeTool, setActiveTool] = useState('select');
 
   return (
     <div className="w-full h-screen bg-background text-foreground dark">
@@ -36,7 +25,7 @@ export default function Editor() {
           <LayersPanel />
 
           {/* Canvas */}
-          <Canvas onFrameCreate={handleFrameCreate} />
+          <Canvas activeTool={activeTool} />
 
           {/* Right Sidebar */}
           <RightSidebar />
@@ -44,7 +33,7 @@ export default function Editor() {
       </div>
 
       {/* Toolbar */}
-      <Toolbar />
+      <Toolbar onToolChange={setActiveTool} />
     </div>
   );
 }
