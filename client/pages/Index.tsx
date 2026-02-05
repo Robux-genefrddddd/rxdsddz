@@ -60,19 +60,31 @@ export default function Index() {
       </nav>
 
       {/* Main Content */}
-      <main className="pt-12">
+      <main className="pt-12 relative">
+        {/* Background gradient overlay */}
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-96 pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle at center top, rgba(255,255,255,0.06) 0%, transparent 70%)',
+            zIndex: 0
+          }}
+        />
+
         {/* Hero Section */}
-        <section className="max-w-5xl mx-auto px-8 py-28 text-center">
-          {/* H1 - Reduced size and cleaner */}
+        <section
+          className="max-w-5xl mx-auto px-8 py-28 text-center relative z-10"
+          style={{ backgroundColor: '#0F1115' }}
+        >
+          {/* H1 - Adjusted */}
           <h1
-            className="font-bold leading-tight tracking-tight mb-6"
+            className="font-bold leading-tight tracking-tight mb-4"
             style={{
               fontSize: '60px',
               fontWeight: 800,
               lineHeight: 1.08,
-              letterSpacing: '-0.02em',
+              letterSpacing: '-1px',
               maxWidth: '950px',
-              margin: '0 auto 24px'
+              margin: '0 auto 16px'
             }}
           >
             Design Roblox UIs
@@ -82,24 +94,55 @@ export default function Index() {
 
           {/* Subtitle - SaaS pro style */}
           <p
-            className="mb-8"
+            className="mb-12"
             style={{
               fontSize: '17px',
               color: 'rgba(255,255,255,0.68)',
               lineHeight: 1.6,
-              maxWidth: '600px',
-              margin: '0 auto 32px'
+              maxWidth: '620px',
+              margin: '0 auto 48px'
             }}
           >
             Professional design tools for Roblox. Create, export, and deploy with precision.
           </p>
 
+          {/* Search + CTA Block */}
+          <div
+            className="flex items-center gap-3 max-w-2xl mx-auto mb-12 p-2 rounded-2xl"
+            style={{
+              backgroundColor: '#171C26',
+              border: '1px solid rgba(255,255,255,0.06)'
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Search templates, components..."
+              className="flex-1 bg-transparent text-sm text-white placeholder-opacity-50 px-4 py-3 outline-none"
+              style={{ color: 'rgba(255,255,255,0.68)' }}
+            />
+            <button
+              className="px-6 font-semibold text-sm text-white hover:opacity-90 transition-opacity flex-shrink-0"
+              style={{
+                height: '40px',
+                backgroundColor: '#1E90FF',
+                borderRadius: '10px'
+              }}
+            >
+              Search
+            </button>
+          </div>
+
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/editor"
-              className="flex items-center justify-center gap-2 px-8 font-semibold text-sm text-black bg-white hover:bg-neutral-100 transition-colors"
-              style={{ height: '48px', borderRadius: '12px' }}
+              className="flex items-center justify-center gap-2 px-8 font-semibold text-sm text-white hover:opacity-90 transition-opacity"
+              style={{
+                height: '48px',
+                backgroundColor: '#1E90FF',
+                borderRadius: '12px',
+                boxShadow: '0 4px 12px rgba(30, 144, 255, 0.2)'
+              }}
             >
               <Plus className="w-4 h-4" />
               Create Project
@@ -117,8 +160,19 @@ export default function Index() {
               View Templates
             </button>
           </div>
-        </section>
 
+          {/* Disclaimer note */}
+          <p
+            className="mt-8 text-center"
+            style={{
+              fontSize: '12px',
+              color: 'rgba(255,255,255,0.55)',
+              lineHeight: 1.4
+            }}
+          >
+            Not an official Roblox site
+          </p>
+        </section>
 
       </main>
 
