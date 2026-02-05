@@ -95,9 +95,22 @@ export function Canvas({
   };
 
   const handleMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Stop dragging
+    // Stop dragging and commit position
     if (isDragging) {
+      if (dragDelta.x !== 0 || dragDelta.y !== 0) {
+        const updatedElements = elements.map((el) =>
+          el.id === selectedId
+            ? {
+                ...el,
+                x: el.x + dragDelta.x,
+                y: el.y + dragDelta.y,
+              }
+            : el
+        );
+        onElementsChange?.(updatedElements);
+      }
       setIsDragging(false);
+      setDragDelta({ x: 0, y: 0 });
       return;
     }
 
