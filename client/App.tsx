@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import Index from "./pages/Index";
 import Editor from "./pages/Editor";
 import About from "./pages/About";
+import Projects from "./pages/Projects";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,7 +27,7 @@ const AppContent = () => {
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
         <Route path="/editor" element={<Editor />} />
-        <Route path="/projects" element={<NotFound page="Projects" />} />
+        <Route path="/projects" element={<Projects />} />
         <Route path="/assets" element={<NotFound page="Assets" />} />
         <Route path="/components" element={<NotFound page="Components" />} />
         <Route path="/design-system" element={<NotFound page="Design System" />} />
