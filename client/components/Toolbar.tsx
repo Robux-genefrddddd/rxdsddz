@@ -88,7 +88,7 @@ export function Toolbar({ onToolChange }: ToolbarProps) {
                 <Icon className="w-4 h-4" />
                 
                 {/* Tooltip */}
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-secondary text-foreground text-xs py-2 px-2 rounded whitespace-nowrap z-10 border border-border/50">
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-neutral-900 text-white text-xs py-2 px-2 rounded whitespace-nowrap z-10 border border-neutral-800">
                   <div className="font-medium">{tool.label}</div>
                   {tool.shortcut && (
                     <div className="text-muted-foreground text-xs">{tool.shortcut}</div>
