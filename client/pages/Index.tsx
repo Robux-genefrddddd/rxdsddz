@@ -45,10 +45,10 @@ export default function Index() {
 
           {/* Menu - Desktop only */}
           <div className="hidden md:flex items-center gap-8">
+            <NavLink href="/projects">Projects</NavLink>
             <NavLink href="/about">About</NavLink>
             <NavLink href="#">Docs</NavLink>
             <NavLink href="#">Community</NavLink>
-            <NavLink href="#">Pricing</NavLink>
           </div>
 
           {/* CTA Button */}
