@@ -90,6 +90,7 @@ export default function About() {
 
           <div className="hidden md:flex items-center gap-8">
             <NavLink href="/">Home</NavLink>
+            <NavLink href="/projects">Projects</NavLink>
             <NavLink href="#">Docs</NavLink>
             <NavLink href="#">Community</NavLink>
           </div>
