@@ -54,6 +54,17 @@ export default function Editor() {
             />
           )}
 
+          {/* Toggle Layers Button */}
+          {!layersVisible && (
+            <button
+              onClick={() => setLayersVisible(true)}
+              className="w-8 bg-black border-r border-neutral-900 flex items-center justify-center hover:bg-neutral-900 transition-colors text-neutral-400 hover:text-white text-xs font-semibold"
+              title="Show Layers Panel"
+            >
+              &gt;
+            </button>
+          )}
+
           {/* Canvas */}
           <Canvas
             activeTool={activeTool}
