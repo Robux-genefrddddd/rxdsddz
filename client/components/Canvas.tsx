@@ -1,34 +1,28 @@
-import { ZoomIn, ZoomOut, Maximize2, Plus } from 'lucide-react';
+import { ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { CreateFrameDialog } from '@/components/CreateFrameDialog';
 
-interface Frame {
+interface CanvasElement {
   id: string;
-  name: string;
+  type: 'rectangle' | 'text' | 'image';
+  x: number;
+  y: number;
   width: number;
   height: number;
+  content?: string;
+  fill?: string;
 }
 
 interface CanvasProps {
-  onFrameCreate?: (frame: Frame) => void;
+  activeTool?: string;
 }
 
-export function Canvas({ onFrameCreate }: CanvasProps) {
+export function Canvas({ activeTool = 'select' }: CanvasProps) {
   const [zoom, setZoom] = useState(100);
-  const [frames, setFrames] = useState<Frame[]>([]);
-  const [dialogOpen, setDialogOpen] = useState(false);
-
-  const createNewFrame = (width: number, height: number, name: string) => {
-    const newFrame: Frame = {
-      id: `frame-${Date.now()}`,
-      name,
-      width,
-      height,
-    };
-    setFrames([...frames, newFrame]);
-    onFrameCreate?.(newFrame);
-  };
+  const [elements, setElements] = useState<CanvasElement[]>([]);
+  const [isDrawing, setIsDrawing] = useState(false);
+  const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+  const canvasRef = useState<HTMLDivElement | null>(null)[1];
 
   const handleZoomIn = () => {
     setZoom((z) => Math.min(z + 10, 400));
