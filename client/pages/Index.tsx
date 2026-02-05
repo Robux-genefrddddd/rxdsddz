@@ -190,18 +190,18 @@ export default function Index() {
       </main>
 
       {/* Footer Logo */}
-      <footer className="border-t border-neutral-900/50 py-16">
+      <footer className="border-t border-neutral-900/50 py-16 bg-gradient-to-b from-black to-neutral-950">
         <div className="max-w-4xl mx-auto px-8">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <img
               src="https://i.ibb.co/B531Dsh6/roblox-logo-roblox-symbol-meaning-history-and-evolution-3-removebg-preview.png"
               alt="Roblox"
-              className="w-16 h-16 opacity-90 hover:opacity-100 transition-opacity"
+              className="w-16 h-16 opacity-95 hover:opacity-100 transition-opacity"
             />
-            <div>
-              <h3 className="text-lg font-semibold text-white">Rbxigma</h3>
-              <p className="text-sm text-neutral-500">Professional Roblox Design Tools</p>
-              <p className="text-xs text-neutral-600 mt-1">© 2024 Rbxigma. Not affiliated with Roblox Corporation.</p>
+            <div className="space-y-1">
+              <h3 className="text-xl font-bold text-white">Rbxigma</h3>
+              <p className="text-sm font-medium text-neutral-400">Professional Roblox Design Tools</p>
+              <p className="text-xs font-semibold text-neutral-500">© 2026 Rbxigma • Not affiliated with Roblox Corporation</p>
             </div>
           </div>
         </div>
