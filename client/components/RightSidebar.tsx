@@ -57,7 +57,7 @@ export function RightSidebar() {
   );
 
   return (
-    <div className="w-80 bg-background border-l border-border flex flex-col">
+    <div className="w-80 bg-black border-l border-neutral-900 flex flex-col">
       {/* Tabs */}
       <div className="flex border-b border-border h-11">
         {[
