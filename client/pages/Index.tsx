@@ -31,12 +31,15 @@ export default function Index() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-neutral-900/50">
         <div className="max-w-6xl mx-auto px-8 h-16 flex items-center justify-between">
-          {/* Logo - Roblox only */}
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Roblox_Logo.svg/2048px-Roblox_Logo.svg.png"
-            alt="Roblox"
-            className="w-6 h-6 hover:opacity-80 transition-opacity cursor-pointer"
-          />
+          {/* Logo + Title */}
+          <div className="flex items-center gap-2">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Roblox_Logo.svg/2048px-Roblox_Logo.svg.png"
+              alt="Roblox"
+              className="w-6 h-6 hover:opacity-80 transition-opacity cursor-pointer"
+            />
+            <span className="text-sm font-semibold tracking-tight">Rbxigma</span>
+          </div>
 
           {/* Menu */}
           <div className="hidden md:flex items-center gap-8">
