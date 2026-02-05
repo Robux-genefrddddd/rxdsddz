@@ -56,7 +56,7 @@ export default function Index() {
               borderRadius: '10px',
               paddingLeft: '18px',
               paddingRight: '18px',
-              backgroundColor: '#1E90FF'
+              backgroundColor: '#E4405E'
             }}
           >
             Get Started
