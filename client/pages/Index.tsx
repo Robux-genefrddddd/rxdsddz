@@ -87,21 +87,6 @@ export default function Index() {
         </section>
 
 
-        {/* Final CTA */}
-        <section className="max-w-4xl mx-auto px-8 py-32 border-t border-neutral-900/50 mb-12">
-          <div className="rounded-lg bg-neutral-950 border border-neutral-800/50 p-12 text-center space-y-6">
-            <h2 className="text-3xl font-bold">Ready to Create?</h2>
-            <p className="text-neutral-500 text-sm max-w-xl mx-auto">
-              Join thousands of designers building with Rbxigma.
-            </p>
-            <Link
-              to="/editor"
-              className="inline-flex px-7 py-3 bg-white text-black rounded-lg font-semibold text-sm hover:bg-neutral-100 transition-colors"
-            >
-              Start Free Project
-            </Link>
-          </div>
-        </section>
       </main>
 
       {/* Footer */}
