@@ -1,6 +1,7 @@
 import { ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import type { CanvasElement } from '@/pages/Editor';
 
 interface CanvasProps {
