@@ -20,12 +20,14 @@ export function Canvas({
 }: CanvasProps) {
   const [zoom, setZoom] = useState(100);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const [previewElement, setPreviewElement] = useState<CanvasElement | null>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (activeTool === 'select' || activeTool === 'select-area' || !activeTool) return;
+    if (!activeTool) return;
 
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return;
@@ -33,9 +35,25 @@ export function Canvas({
     const x = (e.clientX - rect.left) / (zoom / 100);
     const y = (e.clientY - rect.top) / (zoom / 100);
 
-    setIsDrawing(true);
-    setStartPos({ x, y });
-    setPreviewElement(null);
+    // If Select tool and element is selected, prepare to drag
+    if (activeTool === 'select' && selectedId) {
+      const element = elements.find((el) => el.id === selectedId);
+      if (element) {
+        setIsDragging(true);
+        setDragOffset({
+          x: x - element.x,
+          y: y - element.y,
+        });
+        return;
+      }
+    }
+
+    // If drawing tool (not select), start creating shape
+    if (activeTool !== 'select' && activeTool !== 'select-area') {
+      setIsDrawing(true);
+      setStartPos({ x, y });
+      setPreviewElement(null);
+    }
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
