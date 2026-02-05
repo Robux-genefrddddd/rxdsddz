@@ -71,7 +71,36 @@ export default function Projects() {
   );
 
   return (
-    <div style={{ backgroundColor: 'hsl(var(--background))' }} className="min-h-screen">
+    <div
+      style={{ backgroundColor: 'hsl(var(--background))' }}
+      className="min-h-screen relative overflow-hidden"
+    >
+      {/* Background gradient overlay */}
+      <div
+        className="absolute top-0 left-0 right-0 h-96 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(circle at 20% 50%, rgba(47, 128, 255, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(47, 128, 255, 0.05) 0%, transparent 50%)
+          `,
+          zIndex: 0,
+        }}
+      />
+
+      {/* Decorative grid pattern */}
+      <div
+        className="absolute top-0 left-0 right-0 bottom-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px',
+          opacity: 0.3,
+          zIndex: 0,
+        }}
+      />
+
       {/* TopBar */}
       <nav
         className="fixed top-0 left-0 right-0 z-50 border-b"
@@ -175,6 +204,8 @@ export default function Projects() {
           paddingLeft: '24px',
           paddingRight: '24px',
           paddingBottom: '40px',
+          position: 'relative',
+          zIndex: 1,
         }}
       >
         {/* Header */}
