@@ -168,11 +168,17 @@ export function Canvas({
       {/* Canvas Area */}
       <div
         ref={canvasRef}
-        className="flex-1 overflow-auto relative bg-grid cursor-crosshair"
+        className={cn(
+          'flex-1 overflow-auto relative bg-grid',
+          activeTool === 'select' ? 'cursor-pointer' : 'cursor-crosshair'
+        )}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
-        onMouseLeave={() => setIsDrawing(false)}
+        onMouseLeave={() => {
+          setIsDrawing(false);
+          setIsDragging(false);
+        }}
         onClick={handleCanvasClick}
       >
         {/* Grid Pattern - Subtle (30% opacity) */}
