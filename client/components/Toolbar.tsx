@@ -80,7 +80,7 @@ export function Toolbar({ onToolChange }: ToolbarProps) {
                 size="icon"
                 className={cn(
                   'w-9 h-9 relative group transition-all',
-                  isActive && 'bg-primary text-primary-foreground shadow-sm'
+                  isActive && 'bg-violet-600 text-white shadow-sm'
                 )}
                 onClick={() => handleToolSelect(tool.id)}
                 title={`${tool.label} (${tool.shortcut})`}
