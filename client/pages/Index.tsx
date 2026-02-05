@@ -174,7 +174,7 @@ export default function Index() {
               src="https://i.ibb.co/B531Dsh6/roblox-logo-roblox-symbol-meaning-history-and-evolution-3-removebg-preview.png"
               alt="Roblox"
               className="opacity-95 hover:opacity-100 transition-opacity"
-              style={{ width: '200px', height: '128px', margin: '-1px 0 0 0' }}
+              style={{ width: '120px', height: '80px', margin: '0' }}
             />
             <div className="space-y-1">
               <h3 className="text-xl font-bold text-white">Rbxigma</h3>
