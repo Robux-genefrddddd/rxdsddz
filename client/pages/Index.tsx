@@ -173,19 +173,6 @@ export default function Index() {
               View Templates
             </button>
           </div>
-
-          {/* Disclaimer note */}
-          <p
-            className="mt-8 text-center"
-            style={{
-              fontSize: '12px',
-              color: 'rgba(255,255,255,0.55)',
-              lineHeight: 1.4,
-              animation: 'fadeInUpDelay 0.6s ease-out 0.8s both'
-            }}
-          >
-            Not an official Roblox site
-          </p>
         </section>
 
       </main>
