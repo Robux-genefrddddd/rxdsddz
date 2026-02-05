@@ -1,349 +1,413 @@
+import { ArrowRight, Zap, Palette, Users, Code2, Sparkles, Check } from 'lucide-react';
+import { Navigation } from '@/components/Navigation';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 
 export default function Index() {
   return (
-    <div 
-      className="w-full min-h-screen flex flex-col"
-      style={{ backgroundColor: 'hsl(var(--background))' }}
-    >
-      {/* Navigation */}
-      <nav 
-        className="fixed top-0 left-0 right-0 z-50 border-b"
-        style={{
-          height: '56px',
-          backgroundColor: 'hsl(var(--card))',
-          borderColor: 'rgba(255, 255, 255, 0.08)',
-          backdropFilter: 'blur(8px)',
-        }}
-      >
-        <div 
-          className="max-w-6xl mx-auto h-full flex items-center justify-between"
-          style={{ paddingLeft: '24px', paddingRight: '24px' }}
-        >
-          {/* Logo */}
-          <Link 
-            to="/" 
-            className="flex items-center gap-2 group"
-          >
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Roblox_Logo.svg/2048px-Roblox_Logo.svg.png"
-              alt="Roblox"
-              className="w-5 h-5 group-hover:opacity-80 transition-opacity"
-            />
-            <span 
-              className="font-semibold group-hover:opacity-80 transition-opacity"
-              style={{
-                fontSize: '14px',
-                fontWeight: 600,
-                color: 'hsl(var(--foreground))',
-              }}
-            >
-              Rbxigma
-            </span>
-          </Link>
+    <div style={{ backgroundColor: 'hsl(var(--background))' }} className="w-full min-h-screen">
+      <Navigation />
 
-          {/* Menu - Desktop only */}
-          <div className="hidden md:flex items-center gap-8">
-            <NavLink href="/projects">Projects</NavLink>
-            <NavLink href="/about">About</NavLink>
-            <NavLink href="#">Docs</NavLink>
-            <NavLink href="#">Community</NavLink>
-          </div>
-
-          {/* CTA Button */}
-          <Link
-            to="/editor"
-            className="inline-flex items-center justify-center font-semibold transition-all hover:opacity-90 active:scale-95"
-            style={{
-              height: '40px',
-              paddingLeft: '16px',
-              paddingRight: '16px',
-              borderRadius: '12px',
-              backgroundColor: 'hsl(var(--primary))',
-              color: 'hsl(var(--primary-foreground))',
-              fontSize: '13px',
-              fontWeight: 600,
-            }}
-          >
-            Get Started
-          </Link>
-        </div>
-      </nav>
-
-      {/* Main Content */}
-      <main 
-        className="flex-1 pt-20 pb-12"
-        style={{ paddingTop: '80px' }}
-      >
-        {/* Hero Section */}
-        <section 
-          className="max-w-3xl mx-auto px-6 py-12 text-center"
-        >
-          {/* H1 - Proper size now */}
-          <h1
-            style={{
-              fontSize: '32px',
-              fontWeight: 700,
-              lineHeight: 1.3,
-              letterSpacing: '-0.3px',
-              color: 'hsl(var(--foreground))',
-              marginBottom: '16px',
-              animation: 'fadeInUp 0.5s ease-out',
-            }}
-          >
-            Design Roblox UIs
-            <br />
-            <span style={{ color: 'hsl(var(--primary))' }}>Professionally</span>
-          </h1>
-
-          {/* Subtitle */}
-          <p
-            className="mb-8"
-            style={{
-              fontSize: '15px',
-              fontWeight: 400,
-              lineHeight: 1.6,
-              color: 'hsl(var(--muted-foreground))',
-              maxWidth: '520px',
-              margin: '16px auto 32px',
-              animation: 'fadeInUp 0.5s ease-out 0.1s both',
-            }}
-          >
-            Professional design tools for Roblox. Create, export, and deploy with precision. Join thousands of creators building amazing experiences.
-          </p>
-
-          {/* CTA Buttons */}
-          <div
-            className="flex flex-col sm:flex-row items-center justify-center gap-3"
-            style={{
-              animation: 'fadeInUp 0.5s ease-out 0.2s both',
-            }}
-          >
-            <Link
-              to="/editor"
-              className="inline-flex items-center justify-center gap-2 font-semibold transition-all hover:opacity-90 active:scale-95"
-              style={{
-                height: '40px',
-                paddingLeft: '20px',
-                paddingRight: '20px',
-                borderRadius: '12px',
-                backgroundColor: 'hsl(var(--primary))',
-                color: 'hsl(var(--primary-foreground))',
-                fontSize: '14px',
-                fontWeight: 600,
-              }}
-            >
-              Create Project
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <button
-              className="inline-flex items-center justify-center font-medium transition-all hover:bg-secondary"
-              style={{
-                height: '40px',
-                paddingLeft: '20px',
-                paddingRight: '20px',
-                borderRadius: '12px',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                backgroundColor: 'transparent',
-                color: 'hsl(var(--foreground))',
-                fontSize: '14px',
-                fontWeight: 500,
-              }}
-            >
-              View Templates
-            </button>
-          </div>
-        </section>
-
-        {/* Features Section */}
+      <main style={{ paddingTop: '56px' }}>
+        {/* ========== HERO SECTION ========== */}
         <section
-          className="max-w-5xl mx-auto px-6 py-20"
-          style={{ marginTop: '48px' }}
+          className="relative min-h-[calc(100vh-56px)] flex flex-col items-center justify-center px-6 py-20 overflow-hidden"
+          style={{
+            background: `
+              linear-gradient(135deg, rgba(47, 128, 255, 0.05) 0%, transparent 50%),
+              linear-gradient(45deg, transparent 50%, rgba(47, 128, 255, 0.03) 100%)
+            `,
+          }}
         >
-          <h2
-            style={{
-              fontSize: '16px',
-              fontWeight: 700,
-              letterSpacing: '-0.2px',
-              color: 'hsl(var(--foreground))',
-              marginBottom: '24px',
-              textAlign: 'center',
-            }}
-          >
-            Why Choose Rbxigma?
-          </h2>
-
+          {/* Decorative elements */}
           <div
-            className="grid grid-cols-1 md:grid-cols-3 gap-5"
-            style={{ marginTop: '24px' }}
-          >
-            <FeatureCard
-              title="Pixel Perfect"
-              description="Precise controls for professional design work"
-            />
-            <FeatureCard
-              title="Roblox Native"
-              description="Built specifically for the Roblox ecosystem"
-            />
-            <FeatureCard
-              title="Collaborate"
-              description="Share and work together with your team"
-            />
-          </div>
-        </section>
+            className="absolute top-10 right-10 w-64 h-64 rounded-full opacity-20 pointer-events-none"
+            style={{
+              background: 'radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)',
+              filter: 'blur(40px)',
+            }}
+          />
+          <div
+            className="absolute bottom-20 left-10 w-48 h-48 rounded-full opacity-15 pointer-events-none"
+            style={{
+              background: 'radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)',
+              filter: 'blur(40px)',
+            }}
+          />
 
-        {/* Featured Projects Section */}
-        <section
-          className="max-w-5xl mx-auto px-6 py-20"
-          style={{ marginTop: '48px' }}
-        >
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h2
+          <div className="max-w-4xl mx-auto text-center relative z-10">
+            {/* Badge */}
+            <div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8 animate-fade-in"
+              style={{
+                backgroundColor: 'rgba(47, 128, 255, 0.1)',
+                borderColor: 'rgba(47, 128, 255, 0.2)',
+                fontSize: '12px',
+                fontWeight: 600,
+                color: 'hsl(var(--primary))',
+                animation: 'fadeInUp 0.6s ease-out',
+              }}
+            >
+              <Sparkles className="w-3 h-3" />
+              <span>Welcome to the future of design</span>
+            </div>
+
+            {/* Main Headline */}
+            <h1
+              style={{
+                fontSize: 'clamp(40px, 8vw, 64px)',
+                fontWeight: 700,
+                lineHeight: 1.2,
+                letterSpacing: '-0.5px',
+                color: 'hsl(var(--foreground))',
+                marginBottom: '20px',
+                animation: 'fadeInUp 0.6s ease-out 0.1s both',
+              }}
+            >
+              Design Roblox UIs
+              <br />
+              <span style={{ color: 'hsl(var(--primary))' }}>Like a Professional</span>
+            </h1>
+
+            {/* Subtitle */}
+            <p
+              style={{
+                fontSize: '18px',
+                fontWeight: 400,
+                lineHeight: 1.6,
+                color: 'hsl(var(--muted-foreground))',
+                maxWidth: '600px',
+                margin: '20px auto 40px',
+                animation: 'fadeInUp 0.6s ease-out 0.2s both',
+              }}
+            >
+              Professional design tools built specifically for the Roblox ecosystem. Create, collaborate, and deploy with precision.
+            </p>
+
+            {/* CTA Buttons */}
+            <div
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              style={{
+                animation: 'fadeInUp 0.6s ease-out 0.3s both',
+              }}
+            >
+              <Link
+                to="/projects"
+                className="inline-flex items-center justify-center gap-2 font-semibold transition-all hover:opacity-90 active:scale-95"
                 style={{
-                  fontSize: '16px',
-                  fontWeight: 700,
-                  letterSpacing: '-0.2px',
-                  color: 'hsl(var(--foreground))',
-                  marginBottom: '4px',
+                  height: '48px',
+                  paddingLeft: '24px',
+                  paddingRight: '24px',
+                  borderRadius: '12px',
+                  backgroundColor: 'hsl(var(--primary))',
+                  color: 'hsl(var(--primary-foreground))',
+                  fontSize: '15px',
+                  fontWeight: 600,
+                  boxShadow: '0 8px 24px rgba(47, 128, 255, 0.3)',
                 }}
               >
-                Featured Projects
+                Start Designing
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/about"
+                className="inline-flex items-center justify-center font-medium transition-all hover:bg-secondary"
+                style={{
+                  height: '48px',
+                  paddingLeft: '24px',
+                  paddingRight: '24px',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  backgroundColor: 'transparent',
+                  color: 'hsl(var(--foreground))',
+                  fontSize: '15px',
+                  fontWeight: 500,
+                }}
+              >
+                Learn More
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ========== FEATURES SECTION ========== */}
+        <section
+          className="py-24 px-6"
+          style={{ backgroundColor: 'hsl(var(--card))' }}
+        >
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2
+                style={{
+                  fontSize: '32px',
+                  fontWeight: 700,
+                  color: 'hsl(var(--foreground))',
+                  marginBottom: '12px',
+                }}
+              >
+                Powerful Features
               </h2>
               <p
                 style={{
-                  fontSize: '13px',
+                  fontSize: '16px',
                   fontWeight: 400,
                   color: 'hsl(var(--muted-foreground))',
+                  maxWidth: '500px',
+                  margin: '0 auto',
                 }}
               >
-                Explore what creators are building
+                Everything you need to create professional Roblox UIs
               </p>
             </div>
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-1 font-medium transition-all hover:gap-2"
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <FeatureItem
+                icon={<Zap className="w-6 h-6" />}
+                title="Lightning Fast"
+                description="Optimized for speed. Design complex interfaces without lag."
+              />
+              <FeatureItem
+                icon={<Palette className="w-6 h-6" />}
+                title="Pixel Perfect"
+                description="Precise controls for every detail of your design."
+              />
+              <FeatureItem
+                icon={<Users className="w-6 h-6" />}
+                title="Collaborate"
+                description="Work together with your team in real-time."
+              />
+              <FeatureItem
+                icon={<Code2 className="w-6 h-6" />}
+                title="Export Code"
+                description="Generate clean code ready for production."
+              />
+              <FeatureItem
+                icon={<Sparkles className="w-6 h-6" />}
+                title="Smart Components"
+                description="Reusable components that scale with your project."
+              />
+              <FeatureItem
+                icon={<Check className="w-6 h-6" />}
+                title="Quality Assurance"
+                description="Built-in tools to ensure design consistency."
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* ========== STATS SECTION ========== */}
+        <section className="py-24 px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <StatCard number="10K+" label="Designers" />
+              <StatCard number="50M+" label="Projects" />
+              <StatCard number="99.9%" label="Uptime" />
+              <StatCard number="24/7" label="Support" />
+            </div>
+          </div>
+        </section>
+
+        {/* ========== PROJECTS SHOWCASE ========== */}
+        <section className="py-24 px-6" style={{ backgroundColor: 'hsl(var(--card))' }}>
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center justify-between mb-16">
+              <div>
+                <h2
+                  style={{
+                    fontSize: '32px',
+                    fontWeight: 700,
+                    color: 'hsl(var(--foreground))',
+                    marginBottom: '8px',
+                  }}
+                >
+                  Featured Projects
+                </h2>
+                <p
+                  style={{
+                    fontSize: '16px',
+                    fontWeight: 400,
+                    color: 'hsl(var(--muted-foreground))',
+                  }}
+                >
+                  See what creators are building
+                </p>
+              </div>
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-2 font-medium transition-all hover:gap-3"
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: 'hsl(var(--primary))',
+                }}
+              >
+                View All
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+              {[
+                { name: 'Mobile UI Kit', desc: 'Complete mobile interface', color: '#2F80FF' },
+                { name: 'Dashboard', desc: 'Admin dashboard design', color: '#FF6B6B' },
+                { name: 'Game Store', desc: 'Marketplace UI system', color: '#51CF66' },
+                { name: 'Components', desc: 'Reusable UI library', color: '#FFD93D' },
+              ].map((project, i) => (
+                <ProjectShowcaseCard key={i} {...project} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ========== CTA SECTION ========== */}
+        <section className="py-24 px-6 relative overflow-hidden">
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: `
+                radial-gradient(circle at 50% 50%, rgba(47, 128, 255, 0.1) 0%, transparent 70%)
+              `,
+            }}
+          />
+          <div className="max-w-2xl mx-auto text-center relative z-10">
+            <h2
               style={{
-                fontSize: '13px',
-                fontWeight: 500,
-                color: 'hsl(var(--primary))',
+                fontSize: '40px',
+                fontWeight: 700,
+                color: 'hsl(var(--foreground))',
+                marginBottom: '16px',
               }}
             >
-              View All
+              Ready to Get Started?
+            </h2>
+            <p
+              style={{
+                fontSize: '16px',
+                fontWeight: 400,
+                color: 'hsl(var(--muted-foreground))',
+                marginBottom: '32px',
+              }}
+            >
+              Join thousands of creators already building amazing Roblox UIs with Rbxigma.
+            </p>
+            <Link
+              to="/projects"
+              className="inline-flex items-center justify-center gap-2 font-semibold transition-all hover:opacity-90 active:scale-95"
+              style={{
+                height: '48px',
+                paddingLeft: '24px',
+                paddingRight: '24px',
+                borderRadius: '12px',
+                backgroundColor: 'hsl(var(--primary))',
+                color: 'hsl(var(--primary-foreground))',
+                fontSize: '15px',
+                fontWeight: 600,
+                boxShadow: '0 8px 24px rgba(47, 128, 255, 0.3)',
+              }}
+            >
+              Create Your First Project
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
-            style={{ marginTop: '24px' }}
-          >
-            <FeaturedProjectCard
-              name="Mobile UI Kit"
-              description="Complete mobile interface components"
-              thumbnail="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150'%3E%3Crect fill='%23303030' width='200' height='150'/%3E%3Crect fill='%232F80FF' x='40' y='30' width='120' height='90' rx='8'/%3E%3C/svg%3E"
-              date="Mar 15, 2024"
-              collaborators={3}
-            />
-            <FeaturedProjectCard
-              name="Dashboard Design"
-              description="Admin dashboard for Roblox games"
-              thumbnail="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150'%3E%3Crect fill='%23303030' width='200' height='150'/%3E%3Crect fill='%23353535' x='10' y='10' width='50' height='50'/%3E%3Crect fill='%23353535' x='70' y='10' width='50' height='50'/%3E%3Crect fill='%23353535' x='130' y='10' width='50' height='50'/%3E%3C/svg%3E"
-              date="Mar 10, 2024"
-              collaborators={2}
-            />
-            <FeaturedProjectCard
-              name="Game Store"
-              description="Premium game marketplace UI"
-              thumbnail="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150'%3E%3Crect fill='%23303030' width='200' height='150'/%3E%3Crect fill='%232F80FF' x='20' y='20' width='160' height='110' rx='6'/%3E%3C/svg%3E"
-              date="Mar 8, 2024"
-              collaborators={5}
-            />
-            <FeaturedProjectCard
-              name="Component Library"
-              description="Reusable UI component system"
-              thumbnail="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150'%3E%3Crect fill='%23303030' width='200' height='150'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%232F80FF'/%3E%3Crect x='90' y='35' width='40' height='30' fill='%232F80FF'/%3E%3Crect x='140' y='40' width='50' height='40' fill='%232F80FF' rx='6'/%3E%3C/svg%3E"
-              date="Feb 28, 2024"
-              collaborators={4}
-            />
-          </div>
         </section>
-      </main>
 
-      {/* Footer */}
-      <footer 
-        className="border-t"
-        style={{
-          borderColor: 'rgba(255, 255, 255, 0.08)',
-          backgroundColor: 'hsl(var(--card))',
-          paddingTop: '32px',
-          paddingBottom: '32px',
-        }}
-      >
-        <div 
-          className="max-w-4xl mx-auto px-6"
+        {/* ========== FOOTER ========== */}
+        <footer
+          className="border-t py-12 px-6"
+          style={{
+            borderColor: 'rgba(255, 255, 255, 0.08)',
+            backgroundColor: 'hsl(var(--card))',
+          }}
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            {/* Left: Logo + Disclaimer */}
-            <div className="flex flex-col md:flex-row items-center gap-3">
-              <a
-                href="https://roblox.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:opacity-80 transition-opacity"
-              >
-                <img
-                  src="https://i.ibb.co/B531Dsh6/roblox-logo-roblox-symbol-meaning-history-and-evolution-3-removebg-preview.png"
-                  alt="Roblox"
-                  style={{ height: '32px', objectFit: 'contain' }}
-                />
-              </a>
-              <span 
-                className="text-xs border-l pl-3"
-                style={{
-                  borderColor: 'rgba(255, 255, 255, 0.08)',
-                  color: 'hsl(var(--muted-foreground))',
-                  fontSize: '12px',
-                  fontWeight: 400,
-                }}
-              >
-                Not an official Roblox site
-              </span>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Roblox_Logo.svg/2048px-Roblox_Logo.svg.png"
+                    alt="Roblox"
+                    className="w-5 h-5"
+                  />
+                  <span style={{ fontSize: '14px', fontWeight: 600, color: 'hsl(var(--foreground))' }}>
+                    Rbxigma
+                  </span>
+                </div>
+                <p style={{ fontSize: '13px', color: 'hsl(var(--muted-foreground))' }}>
+                  Professional design tools for Roblox
+                </p>
+              </div>
+              <div>
+                <h4 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'hsl(var(--foreground))' }}>
+                  Product
+                </h4>
+                <ul className="space-y-2">
+                  <FooterLink href="/projects">Projects</FooterLink>
+                  <FooterLink href="/about">About</FooterLink>
+                  <FooterLink href="#">Pricing</FooterLink>
+                </ul>
+              </div>
+              <div>
+                <h4 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'hsl(var(--foreground))' }}>
+                  Resources
+                </h4>
+                <ul className="space-y-2">
+                  <FooterLink href="#">Documentation</FooterLink>
+                  <FooterLink href="#">Community</FooterLink>
+                  <FooterLink href="#">Support</FooterLink>
+                </ul>
+              </div>
+              <div>
+                <h4 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'hsl(var(--foreground))' }}>
+                  Legal
+                </h4>
+                <ul className="space-y-2">
+                  <FooterLink href="#">Privacy</FooterLink>
+                  <FooterLink href="#">Terms</FooterLink>
+                  <FooterLink href="#">Contact</FooterLink>
+                </ul>
+              </div>
             </div>
 
-            {/* Right: Social Links */}
-            <div className="flex items-center gap-3">
-              <SocialLink href="https://github.com" label="GitHub">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                </svg>
-              </SocialLink>
-              <SocialLink href="https://linkedin.com" label="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect width="4" height="12" x="2" y="9"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-              </SocialLink>
-              <SocialLink href="mailto:hello@rbxigma.com" label="Email">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
-                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                </svg>
-              </SocialLink>
+            <div
+              className="border-t pt-8 flex flex-col md:flex-row justify-between items-center"
+              style={{ borderColor: 'rgba(255, 255, 255, 0.08)' }}
+            >
+              <p style={{ fontSize: '12px', color: 'hsl(var(--muted-foreground))' }}>
+                © 2024 Rbxigma. Not an official Roblox site.
+              </p>
+              <div className="flex items-center gap-4 mt-4 md:mt-0">
+                <a
+                  href="https://github.com"
+                  style={{ fontSize: '12px', color: 'hsl(var(--primary))' }}
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  GitHub
+                </a>
+                <a
+                  href="https://twitter.com"
+                  style={{ fontSize: '12px', color: 'hsl(var(--primary))' }}
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  Twitter
+                </a>
+                <a
+                  href="mailto:hello@rbxigma.com"
+                  style={{ fontSize: '12px', color: 'hsl(var(--primary))' }}
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  Email
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </footer>
+        </footer>
+      </main>
 
       {/* Animations */}
       <style>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;
-            transform: translateY(12px);
+            transform: translateY(20px);
           }
           to {
             opacity: 1;
@@ -355,16 +419,134 @@ export default function Index() {
   );
 }
 
-// Sub-components
-function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+// Component: Feature Item
+function FeatureItem({
+  icon,
+  title,
+  description,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div
+      className="p-8 rounded-xl border transition-all hover:border-primary/30 group cursor-pointer"
+      style={{
+        backgroundColor: 'hsl(var(--popover))',
+        borderColor: 'rgba(255, 255, 255, 0.08)',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+        e.currentTarget.style.transform = 'translateY(-4px)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = 'none';
+        e.currentTarget.style.transform = 'translateY(0)';
+      }}
+    >
+      <div
+        style={{
+          width: '48px',
+          height: '48px',
+          borderRadius: '12px',
+          backgroundColor: 'rgba(47, 128, 255, 0.1)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'hsl(var(--primary))',
+          marginBottom: '16px',
+        }}
+      >
+        {icon}
+      </div>
+      <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '8px', color: 'hsl(var(--foreground))' }}>
+        {title}
+      </h3>
+      <p style={{ fontSize: '14px', color: 'hsl(var(--muted-foreground))' }}>{description}</p>
+    </div>
+  );
+}
+
+// Component: Stat Card
+function StatCard({ number, label }: { number: string; label: string }) {
+  return (
+    <div
+      className="p-8 rounded-xl border text-center"
+      style={{
+        backgroundColor: 'hsl(var(--card))',
+        borderColor: 'rgba(255, 255, 255, 0.08)',
+      }}
+    >
+      <div
+        style={{
+          fontSize: '32px',
+          fontWeight: 700,
+          color: 'hsl(var(--primary))',
+          marginBottom: '8px',
+        }}
+      >
+        {number}
+      </div>
+      <p style={{ fontSize: '14px', color: 'hsl(var(--muted-foreground))' }}>{label}</p>
+    </div>
+  );
+}
+
+// Component: Project Showcase Card
+function ProjectShowcaseCard({
+  name,
+  desc,
+  color,
+}: {
+  name: string;
+  desc: string;
+  color: string;
+}) {
+  return (
+    <div
+      className="p-6 rounded-xl border overflow-hidden transition-all group cursor-pointer"
+      style={{
+        backgroundColor: 'hsl(var(--popover))',
+        borderColor: 'rgba(255, 255, 255, 0.08)',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+        e.currentTarget.style.transform = 'translateY(-2px)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = 'none';
+        e.currentTarget.style.transform = 'translateY(0)';
+      }}
+    >
+      <div
+        style={{
+          width: '100%',
+          height: '120px',
+          borderRadius: '8px',
+          background: `linear-gradient(135deg, ${color}20 0%, ${color}05 100%)`,
+          border: `1px solid ${color}40`,
+          marginBottom: '12px',
+        }}
+      />
+      <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '4px', color: 'hsl(var(--foreground))' }}>
+        {name}
+      </h3>
+      <p style={{ fontSize: '12px', color: 'hsl(var(--muted-foreground))' }}>{desc}</p>
+    </div>
+  );
+}
+
+// Component: Footer Link
+function FooterLink({ href, children }: { href: string; children: string }) {
   return (
     <a
       href={href}
-      className="text-sm font-medium transition-colors hover:text-primary"
       style={{
         fontSize: '13px',
-        fontWeight: 500,
         color: 'hsl(var(--muted-foreground))',
+        display: 'block',
+        transition: 'color var(--transition-fast)',
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.color = 'hsl(var(--primary))';
@@ -375,171 +557,5 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
     >
       {children}
     </a>
-  );
-}
-
-function FeatureCard({ title, description }: { title: string; description: string }) {
-  return (
-    <div
-      className="p-6 rounded-xl border transition-all hover:border-primary/30 group cursor-pointer"
-      style={{
-        backgroundColor: 'hsl(var(--card))',
-        borderColor: 'rgba(255, 255, 255, 0.08)',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-        e.currentTarget.style.transform = 'translateY(-2px)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = 'var(--shadow-xs)';
-        e.currentTarget.style.transform = 'translateY(0)';
-      }}
-    >
-      <h3
-        style={{
-          fontSize: '16px',
-          fontWeight: 700,
-          color: 'hsl(var(--foreground))',
-          marginBottom: '8px',
-        }}
-      >
-        {title}
-      </h3>
-      <p
-        style={{
-          fontSize: '14px',
-          fontWeight: 400,
-          color: 'hsl(var(--muted-foreground))',
-          lineHeight: 1.5,
-        }}
-      >
-        {description}
-      </p>
-    </div>
-  );
-}
-
-function SocialLink({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="p-2 rounded-lg transition-all"
-      style={{
-        backgroundColor: 'transparent',
-        color: 'hsl(var(--muted-foreground))',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = 'hsl(var(--secondary))';
-        e.currentTarget.style.color = 'hsl(var(--foreground))';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = 'transparent';
-        e.currentTarget.style.color = 'hsl(var(--muted-foreground))';
-      }}
-      title={label}
-    >
-      {children}
-    </a>
-  );
-}
-
-function FeaturedProjectCard({
-  name,
-  description,
-  thumbnail,
-  date,
-  collaborators
-}: {
-  name: string;
-  description: string;
-  thumbnail: string;
-  date: string;
-  collaborators: number;
-}) {
-  return (
-    <div
-      className="group rounded-xl border overflow-hidden transition-all cursor-pointer"
-      style={{
-        backgroundColor: 'hsl(var(--card))',
-        borderColor: 'rgba(255, 255, 255, 0.08)',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-        e.currentTarget.style.borderColor = 'hsl(var(--primary))';
-        e.currentTarget.style.transform = 'translateY(-2px)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = 'var(--shadow-xs)';
-        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-        e.currentTarget.style.transform = 'translateY(0)';
-      }}
-    >
-      {/* Thumbnail */}
-      <div
-        style={{
-          aspectRatio: '16 / 9',
-          backgroundColor: 'hsl(var(--popover))',
-          overflow: 'hidden',
-        }}
-      >
-        <img
-          src={thumbnail}
-          alt={name}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-          }}
-        />
-      </div>
-
-      {/* Content */}
-      <div style={{ padding: '16px' }}>
-        <h3
-          style={{
-            fontSize: '14px',
-            fontWeight: 600,
-            color: 'hsl(var(--foreground))',
-            marginBottom: '4px',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {name}
-        </h3>
-
-        <p
-          style={{
-            fontSize: '12px',
-            fontWeight: 400,
-            color: 'hsl(var(--muted-foreground))',
-            marginBottom: '12px',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {description}
-        </p>
-
-        {/* Metadata */}
-        <div
-          className="flex items-center justify-between"
-          style={{
-            fontSize: '12px',
-            fontWeight: 400,
-            color: 'hsl(var(--muted-foreground))',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-            paddingTop: '12px',
-          }}
-        >
-          <span>{date}</span>
-          <span>{collaborators} collaborator{collaborators !== 1 ? 's' : ''}</span>
-        </div>
-      </div>
-    </div>
   );
 }
