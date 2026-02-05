@@ -81,9 +81,9 @@ export default function Index() {
         {/* Hero Section */}
         <section
           className="max-w-5xl mx-auto px-8 py-28 text-center relative z-10"
-          style={{ backgroundColor: '#0F1115' }}
+          style={{ backgroundColor: '#000000' }}
         >
-          {/* H1 - Adjusted */}
+          {/* H1 - Animated */}
           <h1
             className="font-bold leading-tight tracking-tight mb-4"
             style={{
@@ -92,15 +92,38 @@ export default function Index() {
               lineHeight: 1.08,
               letterSpacing: '-1px',
               maxWidth: '950px',
-              margin: '0 auto 16px'
+              margin: '0 auto 16px',
+              animation: 'fadeInUp 0.6s ease-out'
             }}
           >
+            <style>{`
+              @keyframes fadeInUp {
+                from {
+                  opacity: 0;
+                  transform: translateY(20px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+              @keyframes fadeInUpDelay {
+                from {
+                  opacity: 0;
+                  transform: translateY(20px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+            `}</style>
             Design Roblox UIs
             <br />
             Professionally
           </h1>
 
-          {/* Subtitle - SaaS pro style */}
+          {/* Subtitle - Animated with delay */}
           <p
             className="mb-12"
             style={{
@@ -108,36 +131,49 @@ export default function Index() {
               color: 'rgba(255,255,255,0.68)',
               lineHeight: 1.6,
               maxWidth: '620px',
-              margin: '0 auto 48px'
+              margin: '0 auto 48px',
+              animation: 'fadeInUpDelay 0.6s ease-out 0.2s both'
             }}
           >
             Professional design tools for Roblox. Create, export, and deploy with precision.
           </p>
 
-          {/* Search + CTA Block */}
+          {/* Search + CTA Block - Premium design */}
           <div
-            className="flex items-center gap-3 max-w-2xl mx-auto mb-12 p-2 rounded-2xl"
+            className="max-w-2xl mx-auto mb-12 rounded-xl overflow-hidden"
             style={{
-              backgroundColor: '#171C26',
-              border: '1px solid rgba(255,255,255,0.06)'
+              animation: 'fadeInUpDelay 0.6s ease-out 0.4s both',
+              background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              backdropFilter: 'blur(10px)'
             }}
           >
-            <input
-              type="text"
-              placeholder="Search templates, components..."
-              className="flex-1 bg-transparent text-sm text-white placeholder-opacity-50 px-4 py-3 outline-none"
-              style={{ color: 'rgba(255,255,255,0.68)' }}
-            />
-            <button
-              className="px-6 font-semibold text-sm text-white hover:opacity-90 transition-opacity flex-shrink-0"
-              style={{
-                height: '40px',
-                backgroundColor: '#1E90FF',
-                borderRadius: '10px'
-              }}
-            >
-              Search
-            </button>
+            <div className="flex items-center gap-1 p-1.5">
+              <div className="flex-1 flex items-center gap-3 px-4">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Search templates, components..."
+                  className="flex-1 bg-transparent text-sm text-white placeholder-opacity-50 outline-none"
+                  style={{ color: 'rgba(255,255,255,0.68)' }}
+                />
+              </div>
+              <button
+                className="font-semibold text-sm text-white hover:opacity-90 transition-opacity flex-shrink-0"
+                style={{
+                  height: '44px',
+                  paddingLeft: '24px',
+                  paddingRight: '24px',
+                  backgroundColor: '#1E90FF',
+                  borderRadius: '8px'
+                }}
+              >
+                Search
+              </button>
+            </div>
           </div>
 
           {/* CTA Buttons */}
